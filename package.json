@@ -3,7 +3,8 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node ./bin/www"
+    "start": "node ./bin/www",
+    "test": "NODE_ENV=test node node_modules/mocha/bin/mocha test test/*-test.js"
   },
   "dependencies": {
     "body-parser": "~1.12.4",
@@ -26,5 +27,9 @@
   "bugs": {
     "url": "https://github.com/rolandnsharp/crypto-comment-on/issues"
   },
-  "homepage": "https://github.com/rolandnsharp/crypto-comment-on"
+  "homepage": "https://github.com/rolandnsharp/crypto-comment-on",
+  "devDependencies": {
+    "mocha": "^2.2.5",
+    "should": "^6.0.3"
+  }
 }
