@@ -3,7 +3,7 @@ var pg = require('pg');
 
 var connectionString = "pg://something:1234@localhost/postgres";
 
-exports.query = {
+module.exports = {
    query: function(text, values, callback) {
       pg.connect(connectionString, function(err, client, done) {
         client.query(text, values, function(err, result) {
