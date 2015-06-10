@@ -4,7 +4,7 @@
 var db = require('../db');
 var query = db.query;
 
-exports.getUserById = function getUserById(id, callback) {
+exports.findById = function findById(id, callback) {
 
     var text = 'SELECT * FROM "user" WHERE id = $1';
     var values = [id];
