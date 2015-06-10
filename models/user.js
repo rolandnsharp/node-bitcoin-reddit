@@ -1,11 +1,12 @@
 var db = require('../db');
+var query = db.query;
 
-exports.findOne = function findOne(conditions, callback) {
+exports.getUserById = function getUserById(id, callback) {
 
-    var text = 'select user from table where id ($userId)';
-    var values = [$userId];
+    var text = 'SELECT * FROM "user" WHERE id = $1';
+    var values = [id];
 
-    db.query(text, values, function(err, user) {
-        callback(err, user);
+    query(text, values, function(err, rows) {
+      callback(err, rows ? rows[0] : null)
     });
 };
