@@ -1,29 +1,21 @@
+var User = require('../models/user.js');
+var should = require('should');
 
+describe('test insert user', function() {
 
+    it('something something', function(done) {
+        console.log('testing user insert')
 
-describe('test insert user', function(){
+        var user = {
+            userName: 'John',
+            balance: 1000
+        };
 
-	console.log('testing user insert')
+        User.insert(user, function(err, rows) {
+            should.not.exist(err);
 
-	var user = {
-		userName: 'John',
-		balance: 1000
-	};
-	var callback = function(err, rows) {
-
-		console.log('callback', err, rows)
-		if(err) {
-			console.log(err);
-		} else {
-			console.log('success', rows);
-		} 
-			done();
-	}
-	var userModel = require('../models/user.js')
-	userModel.insert(user, callback)
-/*
-	it('should run a blank test', function(done){
-		done();
-	});
-*/
+// rows.should.exactly.equal(something)
+            done();
+        });
+    });
 });
