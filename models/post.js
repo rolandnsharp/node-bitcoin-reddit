@@ -6,7 +6,7 @@ var query = db.query;
 
 exports.findById = function findById(id, callback) {
 
-    var text = 'SELECT * FROM "post" WHERE id = $1';
+    var text = 'SELECT * FROM "Posts" WHERE id = $1';
     var values = [id];
 
     query(text, values, function(err, rows) {

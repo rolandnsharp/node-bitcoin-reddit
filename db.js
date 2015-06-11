@@ -1,7 +1,8 @@
 // http://stackoverflow.com/questions/8484404/what-is-the-proper-way-to-use-the-node-js-postgresql-module
 var pg = require('pg');
 
-var connectionString = "pg://something:1234@localhost/postgres";
+//var connectionString = "pg://something:1234@localhost/postgres";
+var connectionString = "pg://root:root@localhost/BitcoinReddit";
 
 module.exports = {
    query: function(text, values, callback) {
@@ -13,3 +14,4 @@ module.exports = {
       });
    }
 };
+
