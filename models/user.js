@@ -28,8 +28,8 @@ exports.removeById = function removeById(id, callback) {
 
 
 exports.findByName = function findByName(name, callback) {
-    var text = 'SELECT * FROM "users"';
-    var values = [];
+    var text = 'SELECT * FROM "users" WHERE userName = $1;';
+    var values = [name];
 
     query(text, values, function(err, rows) {
         callback(err, rows ? rows[0] : null)
@@ -41,12 +41,7 @@ exports.insert = function insert(user, callback) {
     var text = 'INSERT INTO "users" (userName, balance) VALUES ($1, $2);';
     var values = [user.userName, user.balance];
 
-//    var text = 'INSERT INTO Users (userName, balance) VALUES ("'+user.userName+'", '+user.balance+')';
-//    var values = [];
-//    console.log('before query', text)
-
     query(text, values, function(err, rows) {
-    console.log('after query', err, rows)
         callback(err, rows ? rows[0] : null)
     });
 };
