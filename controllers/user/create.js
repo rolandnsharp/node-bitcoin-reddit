@@ -1,7 +1,5 @@
 var User = require('../../models/user');
 
-//test
-
 module.exports = function(req, res, next) {
     console.log('jsjksjkjkjkjk');
     var username = req.body.username;

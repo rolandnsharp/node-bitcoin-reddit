@@ -1,19 +1,17 @@
-var User = require('../models/user.js');
-var Post = require('../models/post.js');
+var User = require('../../models/user.js');
+var Post = require('../../models/post.js');
 var should = require('should');
 
 describe('test user', function() {
 
 
-    xit('insert', function(done) {
-
+    it('insert', function(done) {
         var user = {
                 userName: 'testusername',
                 email: 'testemail@test.com',
                 password: 'testpassword',
                 balance: 1000
             };
-
 		User.create(user, function(err, rows) {
 			should.not.exist(err);
 			//rows.should.exactly.equal(something)
@@ -21,25 +19,19 @@ describe('test user', function() {
 		});
     });
 
-
-
     it('find', function(done) {
 
         var name = 'John';
 
-		User.findByName(name, function(err, rows) {
-			should.not.exist(err);
-			//console.log(err, rows)
-			//rows.should.exactly.equal(something)
-			done();
-		});
+        User.findByName(name, function(err, rows) {
+            should.not.exist(err);
+            //console.log(err, rows)
+            //rows.should.exactly.equal(something)
+            done();
+        });
     });
 
 });
-
-
-
-
 
 describe('test post', function() {
 
@@ -53,21 +45,12 @@ describe('test post', function() {
             username: 'John'
         };
 
-		Post.insert(post, function(err, rows) {
-			should.not.exist(err);
-			//rows.should.exactly.equal(undefined)
-			done();
-		});
+        Post.insert(post, function(err, rows) {
+            should.not.exist(err);
+            //rows.should.exactly.equal(undefined)
+            done();
+        });
     });
 
 
 });
-
-
-
-
-
-
-
-
-

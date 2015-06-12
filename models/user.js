@@ -2,10 +2,11 @@
 // https://github.com/brianc/node-pg-query
 
 var db = require('../db');
+var bitcore = require('bitcore');
 var query = db.query;
 
 /*
-exports.findById = function findById(id, callback) {
+exports.findById = function (id, callback) {
 
     var text = 'SELECT * FROM "Users" WHERE id = $1';
     var values = [id];
@@ -15,7 +16,7 @@ exports.findById = function findById(id, callback) {
     });
 };
 
-exports.removeById = function removeById(id, callback) {
+exports.removeById = function (id, callback) {
 
     var text = 'DELETE FROM "Users" WHERE id = $1';
     var values = [id];
@@ -26,8 +27,21 @@ exports.removeById = function removeById(id, callback) {
 };
 */
 
+exports.create = function (user, callback) {
 
-exports.findByName = function findByName(name, callback) {
+  var key = new bitcore.PrivateKey(),
+      address = key.toAddress()
+
+    var text = 'INSERT INTO "users" (userName, email, password, key, address, balance) VALUES ($1, $2, $3, $4, $5, $6);';
+    var values = [user.userName, user.email, user.password, key.toString(), address.toString(), user.balance];
+
+    query(text, values, function(err, rows) {
+        callback(err, rows)
+    });
+};
+
+
+exports.findByName = function (name, callback) {
     var text = 'SELECT * FROM "users" WHERE userName = $1;';
     var values = [name];
 
@@ -37,7 +51,7 @@ exports.findByName = function findByName(name, callback) {
 };
 
 
-exports.insert = function insert(user, callback) {
+exports.insert = function (user, callback) {
     var text = 'INSERT INTO "users" (userName, balance) VALUES ($1, $2);';
     var values = [user.userName, user.balance];
 
@@ -45,6 +59,3 @@ exports.insert = function insert(user, callback) {
         callback(err, rows)
     });
 };
-
-
-
