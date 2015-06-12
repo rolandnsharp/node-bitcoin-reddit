@@ -2,6 +2,7 @@
 
 A Node.js/Express reddit-like forum that uses Bitcoin instead of karma.
 
+[![Join the chat at https://gitter.im/rolandnsharp/node-bitcoin-reddit](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/rolandnsharp/node-bitcoin-reddit?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 To create the db do the follownig:
 
