@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "start": "node ./bin/www",
-    "test": "NODE_ENV=test node node_modules/mocha/bin/mocha test test/*-test.js"
+    "test": "NODE_ENV=test node node_modules/mocha/bin/mocha test test/**/*-test.js"
   },
   "dependencies": {
     "body-parser": "~1.12.4",

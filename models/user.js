@@ -5,7 +5,7 @@ var db = require('../db');
 var query = db.query;
 
 /*
-exports.findById = function findById(id, callback) {
+exports.findById = function (id, callback) {
 
     var text = 'SELECT * FROM "Users" WHERE id = $1';
     var values = [id];
@@ -15,7 +15,7 @@ exports.findById = function findById(id, callback) {
     });
 };
 
-exports.removeById = function removeById(id, callback) {
+exports.removeById = function (id, callback) {
 
     var text = 'DELETE FROM "Users" WHERE id = $1';
     var values = [id];
@@ -27,7 +27,7 @@ exports.removeById = function removeById(id, callback) {
 */
 
 
-exports.findByName = function findByName(name, callback) {
+exports.findByName = function (name, callback) {
     var text = 'SELECT * FROM "users" WHERE userName = $1;';
     var values = [name];
 
@@ -37,7 +37,7 @@ exports.findByName = function findByName(name, callback) {
 };
 
 
-exports.insert = function insert(user, callback) {
+exports.insert = function (user, callback) {
     var text = 'INSERT INTO "users" (userName, balance) VALUES ($1, $2);';
     var values = [user.userName, user.balance];
 
@@ -45,6 +45,3 @@ exports.insert = function insert(user, callback) {
         callback(err, rows)
     });
 };
-
-
-
