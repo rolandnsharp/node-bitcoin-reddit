@@ -32,7 +32,7 @@ exports.findByName = function findByName(name, callback) {
     var values = [name];
 
     query(text, values, function(err, rows) {
-        callback(err, rows ? rows[0] : null)
+        callback(err, rows ? rows.rows : null)
     });
 };
 
@@ -42,7 +42,7 @@ exports.insert = function insert(user, callback) {
     var values = [user.userName, user.balance];
 
     query(text, values, function(err, rows) {
-        callback(err, rows ? rows[0] : null)
+        callback(err, rows)
     });
 };
 

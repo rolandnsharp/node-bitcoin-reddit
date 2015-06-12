@@ -4,7 +4,7 @@ CREATE TABLE Comments (
   "text" varchar(1000) NOT NULL,
   "timestamp" bigint NOT NULL,
   "forum" varchar(50) NOT NULL,
-  "userName" int NOT NULL,
+  "username" varchar(24) NOT NULL,
   "parent" int DEFAULT NULL,
   PRIMARY KEY ("id")
 );
@@ -18,7 +18,7 @@ CREATE TABLE Posts (
   "url" varchar(250) NOT NULL,
   "timestamp" bigint NOT NULL,
   "forum" varchar(50) NOT NULL,
-  "userName" int DEFAULT NULL,
+  "username" varchar(24) NOT NULL,
   PRIMARY KEY ("id")
 );
 
@@ -26,7 +26,7 @@ CREATE TABLE Posts (
 DROP TABLE IF EXISTS Users;
 CREATE TABLE Users (
   "id" SERIAL,
-  "userName" varchar(24) NOT NULL,
+  "username" varchar(24) NOT NULL,
   "balance" bigint DEFAULT NULL,
   PRIMARY KEY ("id")
 );

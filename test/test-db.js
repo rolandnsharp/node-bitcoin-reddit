@@ -1,13 +1,14 @@
 var User = require('../models/user.js');
+var Post = require('../models/post.js');
 var should = require('should');
 
 describe('test user', function() {
 
-/*
+
     it('insert', function(done) {
 
         var user = {
-            userName: 'John',
+            userName: 'Peter',
             balance: 1000
         };
 
@@ -17,7 +18,7 @@ describe('test user', function() {
 			done();
 		});
     });
-*/
+
 
 
     it('find', function(done) {
@@ -26,11 +27,45 @@ describe('test user', function() {
 
 		User.findByName(name, function(err, rows) {
 			should.not.exist(err);
-			console.log(err, rows)
+			//console.log(err, rows)
 			//rows.should.exactly.equal(something)
 			done();
 		});
     });
 
 });
+
+
+
+
+
+describe('test post', function() {
+
+    it('insert', function(done) {
+        var post = {
+            title: 'A Title',
+            text: 'text text text text text text text text text text text text text text text text text text ',
+            url: 'www.ab.com',
+            timestamp: 1234,
+            forum: 'main',
+            username: 'John'
+        };
+
+		Post.insert(post, function(err, rows) {
+			should.not.exist(err);
+			//rows.should.exactly.equal(undefined)
+			done();
+		});
+    });
+
+
+});
+
+
+
+
+
+
+
+
 
