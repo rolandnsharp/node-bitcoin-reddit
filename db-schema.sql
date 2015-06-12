@@ -27,6 +27,8 @@ DROP TABLE IF EXISTS Users;
 CREATE TABLE Users (
   "id" SERIAL,
   "username" varchar(24) NOT NULL,
+  "email" varchar(24) NOT NULL,
+  "password" varchar(24) NOT NULL,
   "balance" bigint DEFAULT NULL,
   PRIMARY KEY ("id")
 );

@@ -26,6 +26,15 @@ exports.removeById = function (id, callback) {
 };
 */
 
+exports.create = function (user, callback) {
+    var text = 'INSERT INTO "users" (userName, email, password, balance) VALUES ($1, $2, $3, $4);';
+    var values = [user.userName, user.email, user.password, user.balance];
+
+    query(text, values, function(err, rows) {
+        callback(err, rows)
+    });
+};
+
 
 exports.findByName = function (name, callback) {
     var text = 'SELECT * FROM "users" WHERE userName = $1;';

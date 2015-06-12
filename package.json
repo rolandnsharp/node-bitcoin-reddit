@@ -32,6 +32,7 @@
   "homepage": "https://github.com/rolandnsharp/crypto-comment-on",
   "devDependencies": {
     "mocha": "^2.2.5",
-    "should": "^6.0.3"
+    "should": "^6.0.3",
+    "supertest": "^1.0.1"
   }
 }
