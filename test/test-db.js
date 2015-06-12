@@ -5,14 +5,16 @@ var should = require('should');
 describe('test user', function() {
 
 
-    it('insert', function(done) {
+    xit('insert', function(done) {
 
         var user = {
-            userName: 'Peter',
-            balance: 1000
-        };
+                userName: 'testusername',
+                email: 'testemail@test.com',
+                password: 'testpassword',
+                balance: 1000
+            };
 
-		User.insert(user, function(err, rows) {
+		User.create(user, function(err, rows) {
 			should.not.exist(err);
 			//rows.should.exactly.equal(something)
 			done();
