@@ -1,3 +1,3 @@
 module.exports = {
-  create: require('./create')
+  createDeposit: require('./createDeposit')
 };

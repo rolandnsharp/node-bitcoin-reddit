@@ -3,18 +3,12 @@ var should = require('should');
 
 describe('Payment: create', function() {
 
-	xit('should create a new user', function(done) {
+	it('should create a new payment', function(done) {
 
-		var username = 'testusername';
-		var email = 'testemail@test.com';
-		var password = 'testpassword';
 
-		request.post('/join')
-			.send({
-				username: username,
-				email: email,
-				password: password
-			})
+		request.post('/deposit')
+//			.field('name', 'my awesome avatar')
+/*			
 			.set('Accept', 'application/json') // another test that accepts html
 			.expect('Content-Type', /json/)
 			.expect(201, function(err, res) {
@@ -29,5 +23,6 @@ describe('Payment: create', function() {
 				// todo check passwordHash
 				done();
 			});
+*/
 	});
 });
