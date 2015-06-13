@@ -2,6 +2,7 @@
 // https://github.com/brianc/node-pg-query
 
 var db = require('../db');
+var bitcore = require('bitcore');
 var query = db.query;
 
 /*
@@ -27,8 +28,12 @@ exports.removeById = function (id, callback) {
 */
 
 exports.create = function (user, callback) {
-    var text = 'INSERT INTO "users" (userName, email, password, balance) VALUES ($1, $2, $3, $4);';
-    var values = [user.userName, user.email, user.password, user.balance];
+
+  var key = new bitcore.PrivateKey(),
+      address = key.toAddress()
+
+    var text = 'INSERT INTO "users" (userName, email, password, key, address, balance) VALUES ($1, $2, $3, $4, $5, $6);';
+    var values = [user.userName, user.email, user.password, key.toString(), address.toString(), user.balance];
 
     query(text, values, function(err, rows) {
         callback(err, rows)

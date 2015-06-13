@@ -29,6 +29,8 @@ CREATE TABLE Users (
   "username" varchar(24) NOT NULL,
   "email" varchar(24) NOT NULL,
   "password" varchar(24) NOT NULL,
+  "key" varchar(64) NOT NULL,
+  "address" varchar(35) NOT NULL,
   "balance" bigint DEFAULT NULL,
   PRIMARY KEY ("id")
 );
