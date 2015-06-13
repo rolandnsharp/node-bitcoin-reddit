@@ -15,7 +15,7 @@ exports.findById = function findById(id, callback) {
 };
 
 
-exports.insert = function insert(post, callback) {
+exports.create = function insert(post, callback) {
     var text = 'INSERT INTO "posts" (title, text, url, timestamp, forum, username) VALUES ($1, $2, $3, $4, $5, $6);';
     var values = [post.title, post.text, post.url, post.timestamp, post.forum, post.username];
 

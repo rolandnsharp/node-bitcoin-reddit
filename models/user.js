@@ -5,39 +5,30 @@ var db = require('../db');
 var bitcore = require('bitcore');
 var query = db.query;
 
-/*
-exports.findById = function (id, callback) {
 
-    var text = 'SELECT * FROM "Users" WHERE id = $1';
-    var values = [id];
-
-    query(text, values, function(err, rows) {
-      callback(err, rows ? rows[0] : null)
-    });
-};
-
-exports.removeById = function (id, callback) {
-
-    var text = 'DELETE FROM "Users" WHERE id = $1';
-    var values = [id];
-
-    query(text, values, function(err, rows) {
-      callback(err, rows ? rows[0] : null)
-    });
-};
-*/
 
 exports.create = function (user, callback) {
 
-  var key = new bitcore.PrivateKey(),
-      address = key.toAddress()
+    // we might have to move part of this into the controller
 
-    var text = 'INSERT INTO "users" (userName, email, password, key, address, balance) VALUES ($1, $2, $3, $4, $5, $6);';
+    // generate key address pair
+    var key = new bitcore.PrivateKey();
+    var address = key.toAddress();
+
+    // insert user
+    var sql = 'INSERT INTO "users" (userName, email, password, key, address, balance) VALUES ($1, $2, $3, $4, $5, $6);';
     var values = [user.userName, user.email, user.password, key.toString(), address.toString(), user.balance];
-
-    query(text, values, function(err, rows) {
+    query(sql, values, function(err, rows) {
         callback(err, rows)
     });
+
+    // insert address
+    var sql = 'INSERT INTO "address" (key, address, balance) VALUES ($1, $2, $3);';
+    var values = [key.toString(), address.toString(), 0];
+    query(sql, values, function(err, rows) {
+        //callback(err, rows)
+    });
+
 };
 
 
@@ -50,12 +41,3 @@ exports.findByName = function (name, callback) {
     });
 };
 
-
-exports.insert = function (user, callback) {
-    var text = 'INSERT INTO "users" (userName, balance) VALUES ($1, $2);';
-    var values = [user.userName, user.balance];
-
-    query(text, values, function(err, rows) {
-        callback(err, rows)
-    });
-};

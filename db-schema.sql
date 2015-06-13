@@ -43,3 +43,28 @@ CREATE TABLE Votes (
   "post_id" int NOT NULL,
   PRIMARY KEY ("id")
 );
+
+
+DROP TABLE IF EXISTS Payment;
+CREATE TABLE Payment (
+  "id" SERIAL,
+  "amount" bigint DEFAULT NULL,
+  "transaction_hash" varchar(64) NOT NULL,
+  "username" varchar(24),
+  "kind" varchar(24),
+  "timestamp" bigint NOT NULL,
+  PRIMARY KEY ("id")
+);
+
+DROP TABLE IF EXISTS Wallet;
+CREATE TABLE Wallet (
+  "id" SERIAL,
+  "key" varchar(64) NOT NULL,
+  "address" varchar(35) NOT NULL,
+  "balance" bigint DEFAULT NULL,  
+  "username" varchar(24),
+  PRIMARY KEY ("id")
+);
+
+
+

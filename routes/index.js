@@ -10,5 +10,8 @@ router.get('/', function(req, res, next) {
 });
 
 router.post('/join', controller.user.create);
+//router.post('/deposit', controller.payment.create);
+
+
 
 module.exports = router;
