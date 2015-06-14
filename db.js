@@ -6,16 +6,16 @@ console.log(connectionString);
 
 
 module.exports = {
-	query: function(text, values, callback) {
+	query: function(sql, values, callback) {
 		pg.connect(connectionString, function(err, client, done) {
 		  if(err) {
 		    return console.error('error fetching client from pool', err);
 		  }
-		  client.query(text, values, function(err, result) {
+		  client.query(sql, values, function(err, result) {
 		    done();
 
 		    if(err) {
-		      return console.error('error running query', err);
+		      return console.error('error running query', sql, JSON.stringify(values), err);
 		    }
 
 			callback(err, result);

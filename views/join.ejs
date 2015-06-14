@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<% include ./head %>
+</head>
+
+<body>
+	<% include ./navbar %>
+
+		<div class="container">
+
+			<form class="form-signin" action="/signin" method="post">
+				<h2 class="form-signin-heading">sign in</h2>
+				<input type="username" name="username" class="form-control" placeholder="username" required autofocus>
+				<input type="password" name="password" class="form-control" placeholder="password" required>
+				<!-- <div class="checkbox"> -->
+				<!-- <label>
+                    <input type="checkbox" value="remember-me"> Remember me
+                  </label> -->
+				<!-- </div> -->
+				<button class="btn btn-lg btn-default btn-block" type="submit">sign in</button>
+			</form>
+
+			<form class="form-signin" action="/signup" method="post">
+				<h2 class="form-signin-heading">sign up</h2>
+				<input type="username" name="username" class="form-control" placeholder="username" required autofocus>
+				<input type="text" name="email" class="form-control" placeholder="email (optional)">
+				<input type="password" name="password" class="form-control" placeholder="Password" required>
+				<!-- <div class="checkbox"> -->
+				<!-- <label>
+                    <input type="checkbox" value="remember-me"> Remember me
+                  </label> -->
+				<!-- </div> -->
+				<button class="btn btn-lg btn-default btn-block" type="submit">sign up</button>
+			</form>
+
+		</div>
+		<!-- /container -->
+
+    <!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+
+</body>
+
+</html>

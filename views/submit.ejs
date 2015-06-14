@@ -1,0 +1,43 @@
+
+
+
+
+
+    <!DOCTYPE html>
+    <html>
+      <head>
+        <% include ./head %>
+
+
+
+      </head>
+      <body>
+        <% include ./navbar %>
+
+
+        <div class="container">
+
+              <form class="form-submit" action="/posts" method="post">
+                <h2 class="form-submit-heading">submit a new post</h2>
+                <input type="text" class="submitTitle" name="title" placeholder="title" required autofocus>
+                <input type="text" class="submitUrl" name="url" placeholder="url (optional)">
+                <input type="text" class="submitText" name="text" placeholder="text (optional)">
+
+                <button class="btn btn-lg btn-default btn-block" type="submit">submit</button>
+              </form>
+
+              </form>
+
+        </div> <!-- /container -->
+
+        <!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+
+      </body>
+    </html>
