@@ -6,7 +6,7 @@ var fixtures = require('./fixtures');
 beforeEach(function beforeEachTest(done) {
     // drop db then load fixtures
 
-    require('../app.js');
+//    require('../app.js');
     done();
 
 });
