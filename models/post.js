@@ -36,7 +36,7 @@ exports.create = function (post, callback) {
 
 
 exports.findAll = function (post, callback) {
-    var text = 'SELECT * FROM "posts"';
+    var text = 'SELECT * FROM "posts" ORDER BY timestamp DESC';
     var values = [];
 
     query(text, values, function(err, rows) {
