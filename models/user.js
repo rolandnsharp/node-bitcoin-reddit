@@ -18,7 +18,7 @@ exports.create = function (user, callback) {
 
     // insert user
     var sql = 'INSERT INTO "users" (userName, email, password, key, address, balance) VALUES ($1, $2, $3, $4, $5, $6);';
-    var values = [user.username, user.email, user.password, key.toString(), address.toString(), user.balance];
+    var values = [user.userName, user.email, user.password, key.toString(), address.toString(), user.balance];
     query(sql, values, function(err, rows) {
         callback(err, rows)
     });

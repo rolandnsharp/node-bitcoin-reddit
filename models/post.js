@@ -33,3 +33,13 @@ exports.create = function (post, callback) {
         callback(err, rows ? rows[0] : null);
     });
 };
+
+
+exports.findAll = function (post, callback) {
+    var text = 'SELECT * FROM "posts"';
+    var values = [];
+
+    query(text, values, function(err, rows) {
+        callback(err, rows ? rows[0] : null);
+    });
+};
