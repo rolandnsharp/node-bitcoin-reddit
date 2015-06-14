@@ -29,7 +29,7 @@ router.post('/signup', controller.user.create);
 router.get('/submit', function(req, res, next) {
 
     if (!req.user) {
-        return res.redirect('/login');
+        return res.redirect('/join');
     }
 
     res.render('submit', {
@@ -38,7 +38,7 @@ router.get('/submit', function(req, res, next) {
     });
 });
 
-router.get('/login', function(req, res, next) {
+router.get('/join', function(req, res, next) {
     res.render('login', {
         title: 'users',
         user: null
