@@ -23,6 +23,7 @@ exports.create = function (user, callback) {
         callback(err, rows)
     });
 
+
 // TODO
     // insert address
     // var sql = 'INSERT INTO "address" (key, address, balance) VALUES ($1, $2, $3);';
