@@ -23,9 +23,10 @@ module.exports = function(req, res, next) {
             return next(err);
         }
 
+
         res.format({
             'text/html': function() {
-                res.redirect('/' + user.username); // redirect to /show
+                res.redirect('/user/' + username); // redirect to /show
             },
             'application/json': function() {
                 res.status(201).json(user); // HTTP status 201 created

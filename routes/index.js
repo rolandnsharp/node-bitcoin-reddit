@@ -39,7 +39,7 @@ router.get('/submit', function(req, res, next) {
 });
 
 router.get('/join', function(req, res, next) {
-    res.render('login', {
+    res.render('join', {
         title: 'users',
         user: null
     });
