@@ -1,4 +1,4 @@
-require('dotenv').load();
+
 var express = require('express');
 var path = require('path');
 var favicon = require('serve-favicon');
@@ -57,5 +57,13 @@ app.use(function(err, req, res, next) {
   });
 });
 
+process.addListener('uncaughtException', function(err) {
+    console.error('Uncaught error in server.js', {
+        err: err,
+        stack: err.stack
+    });
+    // TODO some sort of notification
+    // process.exit(1);
+});
 
 module.exports = app;
