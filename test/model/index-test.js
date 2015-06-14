@@ -5,7 +5,7 @@ var Wallet = require('../../models/wallet.js');
 var Comment = require('../../models/comment.js');
 var Vote = require('../../models/vote.js');
 
-var should = require('should');
+var should = require('chai').should();
 
 
 describe('test user', function() {

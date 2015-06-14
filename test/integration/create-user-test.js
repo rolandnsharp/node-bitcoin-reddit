@@ -1,6 +1,6 @@
 var app = require('../../app');
 var request = require('supertest')(app);
-var should = require('should');
+var should = require('chai').should();
 
 describe('User: create', function() {
 

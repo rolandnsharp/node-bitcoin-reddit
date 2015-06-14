@@ -1,6 +1,6 @@
 var User = require('../models/user.js');
 var Post = require('../models/post.js');
-var should = require('should');
+var should = require('chai').should();
 
 /*
 describe('test user', function() {
@@ -65,9 +65,3 @@ describe('test post', function() {
 
 
 */
-
-
-
-
-
-
