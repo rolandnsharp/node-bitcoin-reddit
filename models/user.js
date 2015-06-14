@@ -3,6 +3,7 @@
 
 var db = require('../db');
 var bitcore = require('bitcore');
+var async = require('async');
 var query = db.query;
 
 

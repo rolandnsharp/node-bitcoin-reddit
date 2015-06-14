@@ -4,7 +4,7 @@ var should = require('chai').should();
 
 describe('User: create', function() {
 
-  it.only('should create a new user', function(done) {
+  it('should create a new user', function(done) {
 
     var username = 'testusername';
     var email = 'testemail@test.com';
@@ -19,15 +19,10 @@ describe('User: create', function() {
       .set('Accept', 'application/json') // another test that accepts html
       .expect('Content-Type', /json/)
       .expect(201, function(err, res) {
+        should.not.exist(err);
+        res.body.should.have.property('command', 'INSERT');
+        res.body.should.have.property('rowCount', 1);
 
-        console.log(err, res.body, 'created');
-        // should.not.exist(err);
-
-
-        // res.body.should.have.properties({
-        //   username: username,
-        //   email: email
-        // });
         // todo check passwordHash
         done();
       });
