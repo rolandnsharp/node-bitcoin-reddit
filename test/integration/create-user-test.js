@@ -10,17 +10,17 @@ describe('User: create', function() {
     var email = 'testemail@test.com';
     var password = 'testpassword';
 
-    request.get('/')
-      // .send({
-        // username: username,
-        // email: email,
-      //   password: password
-      // })
-      // .set('Accept', 'application/json') // another test that accepts html
-      // .expect('Content-Type', /json/)
-      .end(function(err, res) {
+    request.post('/join')
+      .send({
+        username: username,
+        email: email,
+        password: password
+      })
+      .set('Accept', 'application/json') // another test that accepts html
+      .expect('Content-Type', /json/)
+      .expect(201, function(err, res) {
 
-        console.log(err, res, 'created');
+        console.log(err, res.body, 'created');
         // should.not.exist(err);
 
 
