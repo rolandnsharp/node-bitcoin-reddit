@@ -47,8 +47,16 @@ router.get('/join', function(req, res, next) {
 
 
 
+
 router.post('/deposit', controller.payment.createDeposit);
 
 
 
+
+
 module.exports = router;
+
+
+
+
+

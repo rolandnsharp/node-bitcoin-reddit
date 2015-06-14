@@ -4,7 +4,7 @@ var should = require('chai').should();
 
 describe('User: create', function() {
 
-  it('should create a new user', function(done) {
+  xit('should create a new user', function(done) {
 
     var username = 'testusername';
     var email = 'testemail@test.com';

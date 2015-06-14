@@ -11,7 +11,7 @@ var should = require('chai').should();
 describe('test user', function() {
   it('insert', function(done) {
     var user = {
-      userName: 'testusername',
+      username: 'testusername',
       email: 'testemail@test.com',
       password: 'testpassword',
       balance: 1000
@@ -63,7 +63,7 @@ describe('test comment', function() {
     var post = {
       text: 'text text text text text text text text text text text text text text text text text text ',
       forum: 'something',
-      userName: "Steve",
+      username: "Steve",
       parent: 123,
       timestamp: 1234
     };
@@ -99,7 +99,7 @@ describe('test payment', function() {
     var payment = {
       amount: 10000000,
       transaction_hash: 'lajdfakjbfkdajbsflkwbjel',
-      userName: 'John',
+      username: 'John',
       kind: 'deposit',
       timestamp: 1434124144
     };
@@ -121,7 +121,7 @@ describe('test wallet', function() {
       key: 'ksdjfb',
       address: 'alkdfn',
       balance: 12341234,
-      userName: 'Joe'
+      username: 'Joe'
     };
 
     Wallet.create(wallet, function(err, rows) {

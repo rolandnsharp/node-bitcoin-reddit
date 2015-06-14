@@ -17,8 +17,8 @@ exports.create = function (user, callback) {
     var address = key.toAddress();
 
     // insert user
-    var sql = 'INSERT INTO "users" (userName, email, password, key, address, balance) VALUES ($1, $2, $3, $4, $5, $6);';
-    var values = [user.userName, user.email, user.password, key.toString(), address.toString(), user.balance];
+    var sql = 'INSERT INTO "users" (username, email, password, key, address, balance) VALUES ($1, $2, $3, $4, $5, $6);';
+    var values = [user.username, user.email, user.password, key.toString(), address.toString(), user.balance];
     query(sql, values, function(err, rows) {
         callback(err, rows)
     });
@@ -36,7 +36,7 @@ exports.create = function (user, callback) {
 
 
 exports.findByName = function (name, callback) {
-    var text = 'SELECT * FROM "users" WHERE userName = $1;';
+    var text = 'SELECT * FROM "users" WHERE username = $1;';
     var values = [name];
 
     query(text, values, function(err, rows) {
