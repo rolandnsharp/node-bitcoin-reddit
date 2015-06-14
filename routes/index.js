@@ -22,7 +22,31 @@ router.get('/', function(req, res, next) {
 
 });
 
-router.post('/join', controller.user.create);
+router.post('/signup', controller.user.create);
+
+
+// submit a new post
+router.get('/submit', function(req, res, next) {
+
+    if (!req.user) {
+        return res.redirect('/login');
+    }
+
+    res.render('submit', {
+        title: 'submit',
+        user: req.user
+    });
+});
+
+router.get('/login', function(req, res, next) {
+    res.render('login', {
+        title: 'users',
+        user: null
+    });
+});
+
+
+
 router.post('/deposit', controller.payment.createDeposit);
 
 

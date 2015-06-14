@@ -10,7 +10,7 @@ describe('User: create', function() {
     var email = 'testemail@test.com';
     var password = 'testpassword';
 
-    request.post('/join')
+    request.post('/signup')
       .send({
         username: username,
         email: email,
