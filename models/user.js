@@ -34,6 +34,15 @@ exports.create = function (user, callback) {
 
 };
 
+exports.findByAddress = function (address, callback) {
+    var text = 'SELECT * FROM "users" WHERE address = $1;';
+    var values = [address];
+
+    query(text, values, function(err, rows) {
+        callback(err, rows ? rows.rows : null)
+    });
+};
+
 
 exports.findByName = function (name, callback) {
     var text = 'SELECT * FROM "users" WHERE username = $1;';
