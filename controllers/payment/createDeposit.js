@@ -3,16 +3,22 @@ var User = require('../../models/user');
 var async = require('async')
 
 
-// todo: verify that transaction exists on the blockchain
+// todo: 
+// * check nr of confirmations and store payment tuple only once
+// * notify user at confirmation = 1
+// * verify that transaction exists on the blockchain
 module.exports = function(req, res, next) {
 
 	async.waterfall([
+		// find the users that owns the address where a tx was registered
 	    function(callback) {
     		User.findByAddress(req.body.payload.address, callback) 
 	    },
+	    // create payment tuple in db
 	    function(rows, callback) {
 	      	Payment.createDeposit(req.body.payload, rows[0].username, callback)
 	    },
+	    // send confirmations
 	    function(rows, callback) {
 			res.setHeader('Content-Type', 'text/plain')
 			res.status(200)
