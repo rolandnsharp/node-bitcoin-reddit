@@ -1,34 +1,34 @@
 var Payment = require('../../models/payment');
 var User = require('../../models/user');
+var async = require('async')
 
+
+// todo: verify that transaction exists on the blockchain
 module.exports = function(req, res, next) {
 
-	User.findByAddress(req.body.payload.address, function(err, rows) {
-		if(err) {
-			returnErr(err)
-		} else {
-			Payment.createDeposit(req.body.payload, rows.username, function(err, rows) {
-				if(err) {
-					returnErr(err)
-				} else {
-					res.statusCode = 200
-					res.setHeader('Content-Type', 'text/plain');
-					res.send('OK\n')
-				}
-			})
+	async.waterfall([
+	    function(callback) {
+    		User.findByAddress(req.body.payload.address, callback) 
+	    },
+	    function(rows, callback) {
+	      	Payment.createDeposit(req.body.payload, rows[0].username, callback)
+	    },
+	    function(rows, callback) {
+			res.setHeader('Content-Type', 'text/plain')
+			res.status(200)
+			res.send("OK\n");
+	    }
+	], function (err, result) {
+		res.setHeader('Content-Type', 'text/plain')
+		res.status(500)
+		res.send("NOT OK\n");
+	});
 
-			res.end()
-
-		}
-
-    })
 }
 
 
 
-function returnErr(err) {
-	console.error('there was an error', err)
-	res.statusCode = 500
-	res.setHeader('Content-Type', 'text/plain');
-	res.send('NOT OK\n')	
-}
+
+
+
+

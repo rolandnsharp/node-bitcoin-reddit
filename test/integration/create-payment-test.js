@@ -7,6 +7,7 @@ var query = db.query;
 
 describe('Payment: create', function() {
 
+
   before(function(done){
 
     var sql = 'INSERT INTO "users" (username, email, password, key, address, balance) VALUES ($1, $2, $3, $4, $5, $6);';
@@ -15,14 +16,14 @@ describe('Payment: create', function() {
       'testemail@test.com', 
       'testpassword', 
       '9a9f0969e92eddce6c820ac2e1d7dd02c83020d1183f6310a01fb9e67d844d50', 
-      '15U4eEyfEET9GqTSF4JpFRHAD8YGpYLbCE', 
+      'adfbeEyfEET9GqTSF4JpFRHAD8YGpYLbCE', 
       '1000'];
 
     query(sql, values, done);
   })
 
 
-  xit('should create a new payment', function(done) {
+  it('should create a new payment', function(done) {
 
     var notification = {
         "id": "2837-38f0-j292-29f3",
@@ -31,7 +32,7 @@ describe('Payment: create', function() {
         "notification_id": "38220-243858-3848303838",
         "payload": {
           "type": "address",
-          "address": "9a9f0969e92eddce6c820ac2e1d7dd02c83020d1183f6310a01fb9e67d844d50",
+          "address": "adfbeEyfEET9GqTSF4JpFRHAD8YGpYLbCE",
           "block_chain": "bitcoin",
           "sent": 0,
           "received": 4000,
@@ -46,21 +47,16 @@ describe('Payment: create', function() {
     request
       .post('/deposit')
       .send(notification)
-//      .set('Accept', 'application/json') // another test that accepts html
-//      .expect('Content-Type', 'text/plain; charset=utf-8')
+      .expect('Content-Type', 'text/plain; charset=utf-8')
       .expect(200, function(err, res) {
-//        console.log(err, res)
+
+        if (err) throw err;
+
         should.not.exist(err);
+        (res.text).should.eql('OK\n');
 
-
-/*
-        res.body.should.have.properties({
-          username: username,
-          email: email
-        });
-*/
-        // todo check passwordHash
         done();
+
       });
 
   });
