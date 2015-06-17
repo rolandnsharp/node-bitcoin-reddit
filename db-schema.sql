@@ -28,10 +28,12 @@ CREATE TABLE Users (
   "id" SERIAL,
   "username" varchar(24) NOT NULL,
   "email" varchar(24) NOT NULL,
-  "password" varchar(24) NOT NULL,
+  "password_hash" varchar(44) NOT NULL,
+  "salt" varchar(24) NOT NULL,
   "key" varchar(64) NOT NULL,
   "address" varchar(35) NOT NULL,
   "balance" bigint DEFAULT NULL,
+  "joined" bigint NOT NULL,
   PRIMARY KEY ("id")
 );
 

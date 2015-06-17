@@ -10,14 +10,16 @@ describe('Payment: create', function() {
 
   before(function(done){
 
-    var sql = 'INSERT INTO "users" (username, email, password, key, address, balance) VALUES ($1, $2, $3, $4, $5, $6);';
+    var sql = 'INSERT INTO "users" (username, email, password_hash, salt, key, address, balance, joined) VALUES ($1, $2, $3, $4, $5, $6, $7, $8);';
     var values = [
       'createPaymentUser', 
       'testemail@test.com', 
       'testpassword', 
+      'salt',
       '9a9f0969e92eddce6c820ac2e1d7dd02c83020d1183f6310a01fb9e67d844d50', 
       'adfbeEyfEET9GqTSF4JpFRHAD8YGpYLbCE', 
-      '1000'];
+      '1000',
+      '1234567'];
 
     query(sql, values, done);
   })
