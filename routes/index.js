@@ -8,7 +8,7 @@ router.get('/', function(req, res, next) {
 
   // list index posts / front page posts
   Post.findAll(function(err, posts) {
-      console.log(posts[0]);
+      console.log(posts);
       if (err) {
           return (next(err));
       }
