@@ -1,27 +1,28 @@
 var app = require('../../app');
 var request = require('supertest')(app);
 var should = require('chai').should();
-var db = require('../../db');
-var query = db.query;
+var cole = require('../../db/co_log_err.js').cole;
+
 
 
 describe('Payment: create', function() {
 
-
   before(function(done){
+    var user = {
+      username: 'createPaymentUser',
+      email: 'testemail@test.com',
+      passwordHash: 'testpassword',
+      salt: 'salt',
+      balance: 1000,
+      key: '9a9f0969e92eddce6c820ac2e1d7dd02c83020d1183f6310a01fb9e67d844d50',
+      address: 'adfbeEyfEET9GqTSF4JpFRHAD8YGpYLbCE',
+      joined: '1234567'
+    };
 
-    var sql = 'INSERT INTO "users" (username, email, password_hash, salt, key, address, balance, joined) VALUES ($1, $2, $3, $4, $5, $6, $7, $8);';
-    var values = [
-      'createPaymentUser', 
-      'testemail@test.com', 
-      'testpassword', 
-      'salt',
-      '9a9f0969e92eddce6c820ac2e1d7dd02c83020d1183f6310a01fb9e67d844d50', 
-      'adfbeEyfEET9GqTSF4JpFRHAD8YGpYLbCE', 
-      '1000',
-      '1234567'];
-
-    query(sql, values, done);
+    cole(function* () {
+      yield User.create(user);
+      done();
+    })
   })
 
 
@@ -66,9 +67,10 @@ describe('Payment: create', function() {
 
 
   after(function(done){
-    var sql = 'DELETE FROM "users" WHERE username=$1;';
-    var values = ['createPaymentUser'];
-    query(sql, values, done);
+    cole(function* () {
+      yield User.remove({ username:'createPaymentUser' });
+      done();
+    })
   })
 
 

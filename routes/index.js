@@ -4,23 +4,7 @@ var controller = require('../controllers');
 var Post = require('../models/post');
 
 /* GET home page. */
-router.get('/', function(req, res, next) {
-
-  // list index posts / front page posts
-  Post.findAll(function(err, posts) {
-      console.log(posts);
-      if (err) {
-          return (next(err));
-      }
-
-      res.render('index', {
-          title: 'Express',
-          user: req.user || null,
-          posts: posts || null
-      });
-  });
-
-});
+router.get('/', controller.home.show);
 
 router.post('/signup', controller.user.create);
 

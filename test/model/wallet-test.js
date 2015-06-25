@@ -1,10 +1,12 @@
 var Wallet = require('../../models/wallet.js');
 var should = require('chai').should();
+var cole = require('../../db/co_log_err.js').cole;
 
 
 describe('test wallet', function() {
 
-  it('insert', function(done) {
+
+
     var wallet = {
       key: 'ksdjfb',
       address: 'alkdfn',
@@ -12,11 +14,13 @@ describe('test wallet', function() {
       username: 'Joe'
     };
 
-    Wallet.create(wallet, function(err, rows) {
-      should.not.exist(err);
-      //rows.should.exactly.equal(undefined)
+  it('create', function(done) {
+
+    cole(function* () {
+      yield Wallet.create(wallet);
       done();
-    });
+    })
+
   });
 
 });

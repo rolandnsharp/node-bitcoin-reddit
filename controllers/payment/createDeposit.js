@@ -1,6 +1,7 @@
 var Payment = require('../../models/payment');
 var User = require('../../models/user');
-var async = require('async')
+//var async = require('async')
+var cole = require('../../db/co_log_err.js').cole;
 
 
 // todo: 
@@ -9,6 +10,7 @@ var async = require('async')
 // * verify that transaction exists on the blockchain
 module.exports = function(req, res, next) {
 
+/*
 	async.waterfall([
 		// find the users that owns the address where a tx was registered
 	    function(callback) {
@@ -29,6 +31,22 @@ module.exports = function(req, res, next) {
 		res.status(500)
 		res.send("NOT OK\n");
 	});
+*/
+
+	cole(function* () {
+
+		var user = (yield User.findByAddress(req.body.payload.address))[0]
+
+		//console.log(user, req.body.payload)
+
+	    yield Payment.createDeposit(req.body.payload, user.username)
+
+
+		res.setHeader('Content-Type', 'text/plain')
+		res.status(200)
+		res.send("OK\n");
+
+	})
 
 }
 

@@ -1,25 +1,21 @@
 var Post = require('../../models/post');
 
 module.exports = function(req, res, next) {
+    cole(function* () {
 
-	var title = req.body.title;
-	var url = req.body.url;
-	var text = req.body.text;
-	var username = req.user.username;
+		var title = req.body.title;
+		var url = req.body.url;
+		var text = req.body.text;
+		var username = req.user.username;
 
-	var post = {
-		title: title,
-		username: username,
-		url: url,
-		text: text
-	};
+		var post = {
+			title: title,
+			username: username,
+			url: url,
+			text: text
+		};
 
-	Post.create(post, function(err, post) {
-		console.log(err, post);
-		if (err) {
-			return next(err);
-		}
-
+		yield Post.create(post)
 		res.format({
 			'text/html': function() {
 				res.redirect('/');// redirect to /show
@@ -28,5 +24,6 @@ module.exports = function(req, res, next) {
 				res.send(post);
 			}
 		});
+		
 	});
 };

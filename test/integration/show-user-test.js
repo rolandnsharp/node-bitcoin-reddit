@@ -4,6 +4,8 @@ var should = require('chai').should();
 
 describe('User: create', function() {
 
+
+/*
   xit('should create a new user', function(done) {
 
     var username = 'testusername';
@@ -19,5 +21,7 @@ describe('User: create', function() {
         done();
       });
   });
+
+*/
 
 });

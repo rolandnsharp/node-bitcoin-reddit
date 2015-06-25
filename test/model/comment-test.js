@@ -1,11 +1,13 @@
 var Comment = require('../../models/comment.js');
 var should = require('chai').should();
+var cole = require('../../db/co_log_err.js').cole;
 
 
 describe('test comment', function() {
 
   it('insert', function(done) {
-    var post = {
+
+    var comment = {
       text: 'text text text text text text text text text text text text text text text text text text ',
       forum: 'something',
       username: "Steve",
@@ -13,10 +15,12 @@ describe('test comment', function() {
       timestamp: 1234
     };
 
-    Comment.create(post, function(err, rows) {
-      should.not.exist(err);
-      //rows.should.exactly.equal(undefined)
+    cole(function* () {
+      yield Comment.create(comment)
       done();
-    });
+    })
+
   });
+
+
 });

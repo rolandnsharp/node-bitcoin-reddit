@@ -28,7 +28,7 @@ CREATE TABLE Users (
   "id" SERIAL,
   "username" varchar(24) NOT NULL,
   "email" varchar(24) NOT NULL,
-  "password_hash" varchar(44) NOT NULL,
+  "passwordHash" varchar(44) NOT NULL,
   "salt" varchar(24) NOT NULL,
   "key" varchar(64) NOT NULL,
   "address" varchar(35) NOT NULL,
@@ -41,8 +41,8 @@ CREATE TABLE Users (
 DROP TABLE IF EXISTS Votes;
 CREATE TABLE Votes (
   "id" SERIAL,
-  "user_id" int NOT NULL,
-  "post_id" int NOT NULL,
+  "userId" int NOT NULL,
+  "postId" int NOT NULL,
   PRIMARY KEY ("id")
 );
 
@@ -51,7 +51,7 @@ DROP TABLE IF EXISTS Payment;
 CREATE TABLE Payment (
   "id" SERIAL,
   "amount" bigint DEFAULT NULL,
-  "transaction_hash" varchar(64) NOT NULL,
+  "transactionHash" varchar(64) NOT NULL,
   "username" varchar(24),
   "kind" varchar(24),
   "timestamp" bigint NOT NULL,
