@@ -45,7 +45,7 @@ module.exports = function show(req, res, next) {
         });
       },
       'application/json': function() {
-        rres.status(200).json(user);
+        res.status(200).json(user);
       }
     });
 

@@ -5,6 +5,7 @@ var db = require('../db');
 var bitcore = require('bitcore');
 var async = require('async');
 var query = db.query;
+// require this file itself... is that possible?
 var User = require('../models/user.js');
 
 exports.create = function(user, callback) {
