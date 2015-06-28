@@ -5,7 +5,15 @@ module.exports = function show(req, res, next) {
 
   var username = req.params.username;
 
-  console.log(username, 'username to show');
+  if (!username) {
+    logger.warn('Missing Fields', {
+      username: username
+    });
+    return res.status(401).send({
+      type: 'Missing Fields',
+      message: 'username is a required field'
+    });
+  }
 
   User.findByUsername(username, function(err, user) {
     if (err) {
@@ -29,6 +37,17 @@ module.exports = function show(req, res, next) {
       });
     }
 
-    res.json(user);
+    res.format({
+      'text/html': function() {
+        res.render('user', {
+          title: user.username,
+          user: user
+        });
+      },
+      'application/json': function() {
+        rres.status(200).json(user);
+      }
+    });
+
   });
 };
