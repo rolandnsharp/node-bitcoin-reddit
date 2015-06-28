@@ -6,9 +6,16 @@ var bitcore = require('bitcore');
 var async = require('async');
 var query = db.query;
 
+// User constructor
+
 var User = function(user) {
-  this.user = user
+
+  for (var key in user) {
+    this[key] = user[key];
+  }
 };
+
+// User Statics
 
 User.create = function(user, callback) {
   var sql = 'INSERT INTO "users" (username, email, password_hash, salt, key, address, balance, joined) VALUES ($1, $2, $3, $4, $5, $6, $7, $8);';
@@ -35,21 +42,10 @@ User.findByUsername = function(name, callback) {
 
     var user = res ? res.rows[0] : null;
 
+    // Then instantiate a new user object with inherited methods:
+    user = new User(user);
+
     callback(err, user);
-  });
-};
-
-User.findByUsernamex = function(name, callback) {
-  var text = 'SELECT * FROM "users" WHERE username = $1;';
-  var values = [name];
-
-  query(text, values, function(err, res) {
-
-    var user = res ? res.rows[0] : null;
-
-    var xx = new User(user);
-
-    callback(err, xx);
   });
 };
 
@@ -94,7 +90,10 @@ User.deserialize = function() {
   }
 };
 
+// User Methods
+
 User.prototype.validPassword = function(password, callback) {
+  this; // is bound to the `User` instance object it’s called from
   console.log(this, 'validPassword this!!!');
   callback(null, password);
 

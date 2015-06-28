@@ -20,9 +20,7 @@ describe('test user', function() {
     ];
 
     query(sql, values, done);
-
   })
-
 
   it('create', function(done) {
     var user = {
@@ -42,50 +40,33 @@ describe('test user', function() {
     });
   });
 
-
-
-
   it('find', function(done) {
 
     User.findByUsername('testUser1', function(err, user) {
       should.not.exist(err);
 
-      user.should.have.property('username', 'testUser1')
-      user.should.have.property('balance', '1000')
-      user.should.have.property('email', 'testemail@test.com')
+      user.should.have.property('username', 'testUser1');
+      user.should.have.property('balance', '1000');
+      user.should.have.property('email', 'testemail@test.com');
 
-      done();
-    });
+      user.validPassword('testpassword', function(err, password) {
 
-  });
-
-  it('find', function(done) {
-
-    User.findByUsernamex('testUser1', function(err, user) {
-      should.not.exist(err);
-      console.log(user);
-
-      user.validPassword('passskjfdljkfdsj', function(err, password) {
         done();
-
       });
     });
   });
-
-
 
   it('findByAddress', function(done) {
 
     User.findByAddress('15U4eEyfEET9GqTSF4JpFRHAD8YGpYLbCE', function(err, rows) {
       should.not.exist(err);
 
-      rows[0].should.have.property('username', 'testUser1')
-      rows[0].should.have.property('balance', '1000')
-      rows[0].should.have.property('email', 'testemail@test.com')
+      rows[0].should.have.property('username', 'testUser1');
+      rows[0].should.have.property('balance', '1000');
+      rows[0].should.have.property('email', 'testemail@test.com');
 
       done();
     });
-
   });
 
 
@@ -93,8 +74,6 @@ describe('test user', function() {
     var sql = 'DELETE FROM "users" WHERE username=$1 OR username=$2;';
     var values = ['testUser1', 'testUser2'];
     query(sql, values, done);
-  })
-
-
+  });
 
 });
