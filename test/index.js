@@ -1,4 +1,6 @@
-// 
+require('dotenv').load();
+
+//
 //
 // // Before each test, load the fixture data to ensure consistent tests.
 // var fixtures = require('./fixtures');

@@ -1,7 +1,7 @@
 var User = require('../../models/user');
 var Wallet = require('../../models/wallet');
 var Chain = require('chain-node');
-var chain = new Chain('c217818c8c0b31e012775aa8b5ebb318'); // todo: move to dot env
+var chain = new Chain(process.env.CHAIN_API);
 var bitcore = require('bitcore');
 var crypto = require('crypto')
 
@@ -27,11 +27,11 @@ module.exports = function(req, res, next) {
     // make sure we get a post request to /deposit when there is a transaction to that address
     chain.createNotification({
         type: "address",
-        block_chain: "bitcoin", 
+        block_chain: "bitcoin",
         address: address.toString(),
-        url: "https://bitcoinreddit.com/deposit"}, 
+        url: "https://bitcoinreddit.com/deposit"},
         function(err, resp) {
-            if(err) fsLogger.logError(err)        
+            if(err) fsLogger.logError(err)
             else callback(err, resp)
         }
     )
