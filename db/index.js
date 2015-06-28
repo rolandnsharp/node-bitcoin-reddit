@@ -4,28 +4,6 @@ var pg = require('pg');
 var connectionString = process.env.POSTGRES_URI || "postgres://clemensley:postgres:5432@localhost/BitcoinReddit";
 console.log(connectionString);
 
-/*
-module.exports = {
-	query: function(sql, values, callback) {
-		pg.connect(connectionString, function(err, client, done) {
-		  if(err) {
-		    return console.error('error fetching client from pool', err);
-		  }
-		  client.query(sql, values, function(err, result) {
-		    done();
-
-		    if(err) {
-		      return console.error('error running query', sql, JSON.stringify(values), err);
-		    }
-
-			callback(err, result);
-
-		  });
-		});
-   }
-};
-*/
-
 
 exports.getConnection = function () {
 	return new Promise(function(resolve, reject) {
@@ -41,7 +19,7 @@ exports.getConnection = function () {
 }
 
 
-//
+// this is the only interface to the db
 exports.query = function (sql, values, client)  {
 
 	//console.log(sql)

@@ -31,6 +31,10 @@ exports.findByName = function (username, client) {
     return db.find('users', { username:username },  client)
 };
 
+exports.findByEmail = function (username, client) {
+    return db.find('users', { username:username },  client)
+};
+
 exports.remove = function (query, client) {
     return db.remove('users', query, client)
 };

@@ -3,13 +3,13 @@ var router = express.Router();
 var controller = require('../controllers');
 var Post = require('../models/post');
 
-/* GET home page. */
+/* home page */
 router.get('/', controller.home.show);
 
-router.post('/signup', controller.user.create);
 
 
-// submit a new post
+
+/* posts */
 router.get('/submit', function(req, res, next) {
 
     if (!req.user) {

@@ -7,8 +7,8 @@ describe('test user', function() {
 
 
   var user = {
-    username: 'testUser2',
-    email: 'testemail@test.com',
+    username: 'usertestuser',
+    email: 'usertestuser@test.com',
     passwordHash: 'testpassword',
     salt: 'salt',
     balance: 1000,
@@ -38,40 +38,12 @@ describe('test user', function() {
 
   });
 
-
-/*
-
-  it('find', function(done) {
-
-    User.findByName('testUser1', function(err, rows) {
-      should.not.exist(err);
-
-      rows[0].should.have.property('username', 'testUser1')
-      rows[0].should.have.property('balance', '1000')
-      rows[0].should.have.property('email', 'testemail@test.com')
-
+  after(function(done){
+    cole(function* () {
+      yield User.remove({ username: user.username });
       done();
-    });
-
-  });
-
-
-
-  it('findByAddress', function(done) {
-
-    User.findByAddress('15U4eEyfEET9GqTSF4JpFRHAD8YGpYLbCE', function(err, rows) {
-      should.not.exist(err);
-
-      rows[0].should.have.property('username', 'testUser1')
-      rows[0].should.have.property('balance', '1000')
-      rows[0].should.have.property('email', 'testemail@test.com')
-
-      done();
-    });
-
-  });
-
-*/
+    })
+  })
 
 
 
