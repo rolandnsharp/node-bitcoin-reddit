@@ -6,7 +6,11 @@ var bitcore = require('bitcore');
 var async = require('async');
 var query = db.query;
 
-exports.create = function(user, callback) {
+var User = function(user) {
+  this.user = user
+};
+
+User.create = function(user, callback) {
   var sql = 'INSERT INTO "users" (username, email, password_hash, salt, key, address, balance, joined) VALUES ($1, $2, $3, $4, $5, $6, $7, $8);';
   var values = [user.username, user.email, user.passwordHash, user.salt, user.key, user.address, user.balance, user.joined];
   query(sql, values, function(err, res) {
@@ -14,7 +18,7 @@ exports.create = function(user, callback) {
   });
 };
 
-exports.findByAddress = function(address, callback) {
+User.findByAddress = function(address, callback) {
   var text = 'SELECT * FROM "users" WHERE address = $1;';
   var values = [address];
 
@@ -23,16 +27,33 @@ exports.findByAddress = function(address, callback) {
   });
 };
 
-exports.findByUsername = function(name, callback) {
+User.findByUsername = function(name, callback) {
   var text = 'SELECT * FROM "users" WHERE username = $1;';
   var values = [name];
 
   query(text, values, function(err, res) {
-    callback(err, res ? res.rows : null)
+
+    var user = res ? res.rows[0] : null;
+
+    callback(err, user);
   });
 };
 
-exports.authenticate = function() {
+User.findByUsernamex = function(name, callback) {
+  var text = 'SELECT * FROM "users" WHERE username = $1;';
+  var values = [name];
+
+  query(text, values, function(err, res) {
+
+    var user = res ? res.rows[0] : null;
+
+    var xx = new User(user);
+
+    callback(err, xx);
+  });
+};
+
+User.authenticate = function() {
   var self = this;
 
   return function(username, password, callback) {
@@ -57,14 +78,14 @@ exports.authenticate = function() {
   }
 };
 
-exports.serialize = function() {
+User.serialize = function() {
   return function(user, callback) {
     // only store the username in session
     callback(null, user.username);
   }
 };
 
-exports.deserialize = function() {
+User.deserialize = function() {
   var self = this;
   return function(username, callback) {
     self.findByUsername(username, function(err, user) {
@@ -72,3 +93,11 @@ exports.deserialize = function() {
     });
   }
 };
+
+User.prototype.validPassword = function(password, callback) {
+  console.log(this, 'validPassword this!!!');
+  callback(null, password);
+
+};
+
+module.exports = User;

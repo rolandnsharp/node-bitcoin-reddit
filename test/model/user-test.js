@@ -5,7 +5,7 @@ var query = db.query;
 
 describe('test user', function() {
 
-  beforeEach(function(done){
+  beforeEach(function(done) {
 
     var sql = 'INSERT INTO "users" (username, email, password_hash, salt, key, address, balance, joined) VALUES ($1, $2, $3, $4, $5, $6, $7, $8);';
     var values = [
@@ -16,7 +16,8 @@ describe('test user', function() {
       '9a9f0969e92eddce6c820ac2e1d7dd02c83020d1183f6310a01fb9e67d844d50',
       '15U4eEyfEET9GqTSF4JpFRHAD8YGpYLbCE',
       '1000',
-      '123345'];
+      '123345'
+    ];
 
     query(sql, values, done);
 
@@ -46,16 +47,29 @@ describe('test user', function() {
 
   it('find', function(done) {
 
-    User.findByUsername('testUser1', function(err, rows) {
+    User.findByUsername('testUser1', function(err, user) {
       should.not.exist(err);
 
-      rows[0].should.have.property('username', 'testUser1')
-      rows[0].should.have.property('balance', '1000')
-      rows[0].should.have.property('email', 'testemail@test.com')
+      user.should.have.property('username', 'testUser1')
+      user.should.have.property('balance', '1000')
+      user.should.have.property('email', 'testemail@test.com')
 
       done();
     });
 
+  });
+
+  it('find', function(done) {
+
+    User.findByUsernamex('testUser1', function(err, user) {
+      should.not.exist(err);
+      console.log(user);
+
+      user.validPassword('passskjfdljkfdsj', function(err, password) {
+        done();
+
+      });
+    });
   });
 
 
@@ -75,7 +89,7 @@ describe('test user', function() {
   });
 
 
-  afterEach(function(done){
+  afterEach(function(done) {
     var sql = 'DELETE FROM "users" WHERE username=$1 OR username=$2;';
     var values = ['testUser1', 'testUser2'];
     query(sql, values, done);
