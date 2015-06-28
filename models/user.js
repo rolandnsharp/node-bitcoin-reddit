@@ -5,8 +5,6 @@ var db = require('../db');
 var bitcore = require('bitcore');
 var async = require('async');
 var query = db.query;
-// require this file itself... is that possible?
-var User = require('../models/user.js');
 
 exports.create = function(user, callback) {
   var sql = 'INSERT INTO "users" (username, email, password_hash, salt, key, address, balance, joined) VALUES ($1, $2, $3, $4, $5, $6, $7, $8);';
@@ -34,8 +32,11 @@ exports.findByUsername = function(name, callback) {
   });
 };
 
-exports.authenticate = function(username, password, callback) {
-    User.findByUsername(username, function(err, user) {
+exports.authenticate = function() {
+  var self = this;
+
+  return function(username, password, callback) {
+    self.findByUsername(username, function(err, user) {
       if (err) {
         return callback(err);
       }
@@ -45,23 +46,29 @@ exports.authenticate = function(username, password, callback) {
         });
       }
       // TODO create validPassword method
-      if (!user.validPassword(password)) {
-        return callback(null, false, {
-          message: 'Incorrect password.'
-        });
-      }
+      // if (!user.validPassword(password)) {
+      //   return callback(null, false, {
+      //     message: 'Incorrect password.'
+      //   });
+      // }
+
       return callback(null, user);
     });
   }
 };
 
-exports.serialize = function(user, callback) {
+exports.serialize = function() {
+  return function(user, callback) {
     // only store the username in session
     callback(null, user.username);
+  }
 };
 
-exports.deserialize = function(username, callback) {
-  User.findByUsername(username, function(err, user) {
-    callback(err, user);
-  });
+exports.deserialize = function() {
+  var self = this;
+  return function(username, callback) {
+    self.findByUsername(username, function(err, user) {
+      callback(err, user);
+    });
+  }
 };
