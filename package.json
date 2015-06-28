@@ -18,7 +18,8 @@
     "express": "~4.12.4",
     "morgan": "~1.5.3",
     "pg": "^4.4.0",
-    "serve-favicon": "~2.2.1"
+    "serve-favicon": "~2.2.1",
+    "winston": "^1.0.1"
   },
   "description": "A Node.js/Express reddit-like forum that uses Bitcoin instead of karma.",
   "main": "app.js",

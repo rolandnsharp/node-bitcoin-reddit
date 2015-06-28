@@ -9,12 +9,12 @@ describe('test user', function() {
 
     var sql = 'INSERT INTO "users" (username, email, password_hash, salt, key, address, balance, joined) VALUES ($1, $2, $3, $4, $5, $6, $7, $8);';
     var values = [
-      'testUser1', 
-      'testemail@test.com', 
-      'testpassword', 
+      'testUser1',
+      'testemail@test.com',
+      'testpassword',
       'salt',
-      '9a9f0969e92eddce6c820ac2e1d7dd02c83020d1183f6310a01fb9e67d844d50', 
-      '15U4eEyfEET9GqTSF4JpFRHAD8YGpYLbCE', 
+      '9a9f0969e92eddce6c820ac2e1d7dd02c83020d1183f6310a01fb9e67d844d50',
+      '15U4eEyfEET9GqTSF4JpFRHAD8YGpYLbCE',
       '1000',
       '123345'];
 
@@ -46,7 +46,7 @@ describe('test user', function() {
 
   it('find', function(done) {
 
-    User.findByName('testUser1', function(err, rows) {
+    User.findByUsername('testUser1', function(err, rows) {
       should.not.exist(err);
 
       rows[0].should.have.property('username', 'testUser1')

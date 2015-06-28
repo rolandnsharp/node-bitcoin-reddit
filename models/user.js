@@ -26,7 +26,7 @@ exports.findByAddress = function (address, callback) {
 };
 
 
-exports.findByName = function (name, callback) {
+exports.findByUsername = function (name, callback) {
     var text = 'SELECT * FROM "users" WHERE username = $1;';
     var values = [name];
 
