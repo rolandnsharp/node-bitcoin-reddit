@@ -3,6 +3,11 @@ var router = express.Router();
 var controller = require('../controllers');
 var Post = require('../models/post');
 
+var LocalStrategy = require('passport-local').Strategy;
+passport.use(new LocalStrategy(User.authenticate()));
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
+
 /* GET home page. */
 router.get('/', function(req, res, next) {
 
@@ -55,8 +60,3 @@ router.post('/deposit', controller.payment.createDeposit);
 
 
 module.exports = router;
-
-
-
-
-
