@@ -21,6 +21,16 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
+
+// Configuring sessions and Passport
+app.use(session({
+  secret: 'mySecretKey',
+  resave: false, // what are these options for. I just put them in to remove depreciation message
+  saveUninitialized: false
+}));
+app.use(passport.initialize());
+app.use(passport.session());
+
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);

@@ -2,11 +2,13 @@ var express = require('express');
 var router = express.Router();
 var controller = require('../controllers');
 var Post = require('../models/post');
+var User = require('../models/user');
 
 var LocalStrategy = require('passport-local').Strategy;
+
 passport.use(new LocalStrategy(User.authenticate()));
-passport.serializeUser(User.serializeUser());
-passport.deserializeUser(User.deserializeUser());
+passport.serializeUser(User.serialize());
+passport.deserializeUser(User.deserialize());
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -27,8 +29,7 @@ router.get('/', function(req, res, next) {
 
 });
 
-router.post('/signup', controller.user.create);
-
+router.post('/signup', passport.authenticate('local'), controller.user.create);
 
 // submit a new post
 router.get('/submit', function(req, res, next) {
