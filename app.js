@@ -5,14 +5,15 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var jwt    = require('jsonwebtoken');
-
-
-
 var app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
+
+
+//app.engine('html', require('ejs').renderFile);
+
 
 
 // uncomment after placing your favicon in /public
@@ -25,42 +26,48 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 
 
-
-
-
 app.use(function(req, res, next) {
 
-  // check header or url parameters or post parameters for token
-  var token = req.body.token || req.headers['x-access-token'] // || req.param('token');
+// check header or url parameters or post parameters for token
+//  var token = req.body.token || req.headers['x-access-token'] // || req.param('token');
+
+  // look for token in a cookie
+  var token = req.cookies.token
 
   // if we find a token we try and verify it
   if (token) {
     // verifies secret and checks exp
-    jwt.verify(token, 'SuperSecret', function(err, decoded) {  
-      // if everything is good, save to request for use in other routes
-      if (decoded) {
-        req.decoded = decoded;  
-        next();
-      // if token has been messed with we show a failiure message
-      } else {
-        return res.json({ success: false, message: 'Failed to authenticate token.' });    
-      }
-    });
+    jwt.verify(token, 'SuperSecret', function(err, user) {
 
-  // if we do not find a token, the user is not signed in
+      // if everything is good, save to request for use in other routes
+      if (user)
+        req.user = user;  
+      
+      // if token has been messed with we show a failiure message
+      else
+        return res.json({ success: false, message: 'Failed to authenticate token.' });    
+      
+      next();    
+ 
+    });
   } else {
-    req.decoded = {
-      username: 'anonymous'
-    }
+
     next();    
+
   }
   
+  
 });
+
+
+
 
 
 app.use('/', require('./routes/index'));
 app.use('/u', require('./routes/user'));
 app.use('/p', require('./routes/post'));
+
+
 
 
 

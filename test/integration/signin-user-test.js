@@ -12,8 +12,8 @@ describe('User: signin', function() {
   before(function(done){
     cole(function* () {
 
-    	var password = 'testpassword'
-    	var salt = 'salt'
+    var password = 'testpassword'
+    var salt = 'salt'
 		var user = {
 			username: 'existingUser',
 			email: 'existingUser@test.com',
@@ -36,7 +36,7 @@ describe('User: signin', function() {
     var username = 'existingUser';
     var password = 'testpassword';
 
-    request.post('/u/signin')
+    request.post('/signin')
       .send({
         username: username,
         password: password
@@ -57,13 +57,13 @@ describe('User: signin', function() {
     var username = 'existingUser1';
     var password = 'testpassword';
 
-    request.post('/u/signin')
+    request.post('/signin')
       .send({
         username: username,
         password: password
       })
       .set('Accept', 'application/json') // another test that accepts html
-      .expect('Content-Type', /json/)
+      //.expect('Content-Type', /json/)
       .expect(500, function(err, res) {
         should.not.exist(err);
         //res.body.should.have.property('success', true);
@@ -78,7 +78,7 @@ describe('User: signin', function() {
     var username = 'existingUser';
     var password = 'testpassword1';
 
-    request.post('/u/signin')
+    request.post('/signin')
       .send({
         username: username,
         password: password

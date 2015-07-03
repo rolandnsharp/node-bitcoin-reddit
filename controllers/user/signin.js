@@ -5,7 +5,7 @@ var cole = require('../../db/co_log_err.js').cole;
 var crypto = require('crypto');
 var jwt    = require('jsonwebtoken');
 
-module.exports = function show(req, res, next) {
+module.exports = function (req, res, next) {
     cole(function* () {
 
         var username = req.body.username;
@@ -40,11 +40,25 @@ module.exports = function show(req, res, next) {
 				});
 
 				// return the information including token as JSON
-				res.status(200).json({
-					success: true,
-					message: 'Enjoy your token!',
-					token: token
+	            res.cookie('token', token, { httpOnly: true });
+				res.status(200);
+
+
+
+				res.format({
+				'text/html': function() {
+					res.redirect('/')
+				},
+				'application/json': function() {
+					res.json({
+						success: true,
+						message: 'Enjoy your token!',
+						token: token
+					});
+				}
 				});
+
+
 			}   
 		}
 	});

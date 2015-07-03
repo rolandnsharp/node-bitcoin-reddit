@@ -60,11 +60,24 @@ module.exports = function(req, res, next) {
                 expiresInMinutes: 1440 // expires in 24 hours
             });
 
-            res.status(201).json({
-                success: true,
-                message: 'Welcome '+user.username,
-                token: token
-            }); 
+            // store token in a cookie
+            res.cookie('token', token, { httpOnly: true });
+            res.status(201)
+
+
+
+            res.format({
+                'text/html': function() {
+                    res.redirect('/')
+                },
+                'application/json': function() {
+                    res.json({
+                        success: true,
+                        message: 'Welcome '+user.username,
+                        token: token
+                    }); 
+                }
+            });
 
         }
 

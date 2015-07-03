@@ -7,6 +7,16 @@ var Post = require('../models/post');
 router.get('/', controller.home.show);
 
 
+router.post('/signup', controller.user.signup);
+router.post('/signin', controller.user.signin);
+router.get('/logout', controller.user.logout);     // this should technically be a post
+router.post('/deposit', controller.payment.createDeposit);
+
+
+
+router.post('/submit', controller.post.create);
+
+
 
 
 /* posts */
@@ -22,6 +32,8 @@ router.get('/submit', function(req, res, next) {
     });
 });
 
+
+
 router.get('/join', function(req, res, next) {
     res.render('join', {
         title: 'users',
@@ -32,7 +44,6 @@ router.get('/join', function(req, res, next) {
 
 
 
-router.post('/deposit', controller.payment.createDeposit);
 
 
 

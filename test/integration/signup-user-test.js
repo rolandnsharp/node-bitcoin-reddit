@@ -34,7 +34,7 @@ describe('User: signup', function() {
     var email = 'signupUser@test.com';
     var password = 'signupUserPassword';
 
-    request.post('/u/signup')
+    request.post('/signup')
       .send({
         username: username,
         email: email,
@@ -60,7 +60,7 @@ describe('User: signup', function() {
     var email = 'existingUser123@test.com';
     var password = 'signupUserPassword';
 
-    request.post('/u/signup')
+    request.post('/signup')
       .send({
         username: username,
         email: email,
@@ -85,7 +85,7 @@ describe('User: signup', function() {
     var email = 'existingUser@test.com';
     var password = 'signupUserPassword';
 
-    request.post('/u/signup')
+    request.post('/signup')
       .send({
         username: username,
         email: email,
