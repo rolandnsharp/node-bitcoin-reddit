@@ -8,6 +8,8 @@ var jwt    = require('jsonwebtoken');
 module.exports = function (req, res, next) {
     cole(function* () {
 
+        console.log('signin', req.body)
+
         var username = req.body.username;
         var password = req.body.password;
         //var email = req.body.email;
@@ -16,7 +18,7 @@ module.exports = function (req, res, next) {
 
 		if (!user) {
 		
-			res.status(500).json({ 
+			res.status(200).json({ 
 				success: false, 
 				message: 'Authentication failed. User password combination not found. (user not found)' 
 			});
@@ -27,7 +29,7 @@ module.exports = function (req, res, next) {
 
 			// check if password matches
 			if (user.passwordHash != passwordHash) {
-				res.status(500).json({ 
+				res.status(200).json({ 
 					success: false, 
 					message: 'Authentication failed. User password combination not found. (pwd not found)' 
 				});
@@ -42,9 +44,12 @@ module.exports = function (req, res, next) {
 				// return the information including token as JSON
 	            res.cookie('token', token, { httpOnly: true });
 				res.status(200);
+				res.json({
+					success: true,
+					//token: token
+				});
 
-
-
+/*
 				res.format({
 				'text/html': function() {
 					res.redirect('/')
@@ -57,7 +62,7 @@ module.exports = function (req, res, next) {
 					});
 				}
 				});
-
+*/
 
 			}   
 		}

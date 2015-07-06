@@ -12,6 +12,8 @@ var jwt    = require('jsonwebtoken');
 module.exports = function(req, res, next) {
     cole(function* () {
 
+        console.log('signup', req.body)
+
         var username = req.body.username;
         var password = req.body.password;
         var email = req.body.email;
@@ -20,12 +22,12 @@ module.exports = function(req, res, next) {
         var userByUsername = (yield User.find({ username:username }))[0]
 
         if(userByEmail) {
-            res.status(500).json({
+            res.status(200).json({
                 success: false,
                 message: 'Email taken'
             });
         } else if(userByUsername) {
-            res.status(500).json({
+            res.status(200).json({
                 success: false,
                 message: 'Username taken'
             });            
@@ -63,9 +65,12 @@ module.exports = function(req, res, next) {
             // store token in a cookie
             res.cookie('token', token, { httpOnly: true });
             res.status(201)
+            res.json({
+                success: true,
+                //token: token
+            });
 
-
-
+/*
             res.format({
                 'text/html': function() {
                     res.redirect('/')
@@ -78,7 +83,7 @@ module.exports = function(req, res, next) {
                     }); 
                 }
             });
-
+*/
         }
 
     })

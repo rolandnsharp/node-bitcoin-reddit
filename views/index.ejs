@@ -1,42 +1,25 @@
 <!DOCTYPE html>
 <html>
 
-<head>
-	<% include ./head %>
+	<head>
+		<% include ./head %>
+	</head>
 
-</head>
+	<body>
+		<% include ./navbar %>
 
-<body>
+		<div class="container">
+			<div class="row">
 
-	<% include ./navbar %>
-  <div class="container">
-		<div class="row">
+				<div class="col-lg-8">
+					<% include ./feed %>
+				</div>
 
-			<div class="col-lg-8">
-
-        <% include ./feed %>
-
-
-			</div>
-
-			<div class="col-lg-4">
-
-        <% include ./sidebar %>
-
-
-			</div>
-    </div>
+				<div class="col-lg-4">
+			        <% include ./sidebar %>
+				</div>
+	    	</div>
 		</div>
-
-		<!-- Latest compiled and minified CSS -->
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
-
-		<!-- Optional theme -->
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
-
-		<!-- Latest compiled and minified JavaScript -->
-		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-
-</body>
+	</body>
 
 </html>

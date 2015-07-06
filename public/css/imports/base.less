@@ -1,24 +1,55 @@
+/* ---- html tags ---- */
+
 body {
-	padding: 50px;
-	font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  padding: 0px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
+
 a {
-	color: #00b7ff;
+  color: #00b7ff;
+  text-decoration: none;
 }
 
-body {
-  min-height: 2000px;
+.container {
+  margin: 50px;
 }
 
+/* ---- navbar ---- */
+
+#menu {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;  
+  
+  -webkit-flex-flow: row wrap;
+  flex-flow: row wrap;
+}
+
+#menu-left {
+   flex: 1 auto; 
+}
+
+#menu-right {
+   flex: 1 auto; 
+  text-align: right;
+}
+
+
+
+
+
+/*
 .navbar-static-top {
   margin-bottom: 19px;
 }
 
-/*body {
+body {
   padding-top: 40px;
   padding-bottom: 40px;
   background-color: #eee;
-}*/
+}
 
 .form-signin {
   max-width: 330px;
@@ -61,3 +92,4 @@ body {
   padding: 15px;
   margin: 0 auto;
 }
+*/

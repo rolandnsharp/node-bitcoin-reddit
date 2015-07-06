@@ -8,6 +8,8 @@ var app = require('../app');
 var debug = require('debug')('crypto-comment-on:server');
 var http = require('http');
 
+socketioJwt =  require('socketio-jwt')
+
 /**
  * Get port from environment and store in Express.
  */
@@ -27,6 +29,40 @@ var server = http.createServer(app);
 server.listen(port);
 server.on('error', onError);
 server.on('listening', onListening);
+
+
+
+
+/* ---- SOCKET.IO ---- */
+
+
+
+/*
+// without jwt
+var io = require('socket.io')(server);
+io.on('connection', function(){
+  io.emit('hi')
+});
+*/
+
+/*
+// with jwt (not working yet)
+var io = require('socket.io')(server);
+io.sockets
+  .on('connection', socketioJwt.authorize({
+    secret: 'your secret or public key',
+    timeout: 15000 // 15 seconds to send the authentication message
+  })).on('authenticated', function(socket) {
+    //this socket is authenticated, we are good to handle more events from it.
+    console.log('hello! ' + socket.decoded_token.name);
+  });
+*/
+
+/* ------------------ */
+
+
+
+
 
 /**
  * Normalize a port into a number, string, or false.

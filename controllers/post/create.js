@@ -16,6 +16,7 @@ module.exports = function(req, res, next) {
 			url: url,
 			timestamp: new Date().getTime(),
 			forum: 'TODO',
+			investment: 0,
 			username: username,
 		};
 

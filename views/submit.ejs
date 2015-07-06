@@ -1,20 +1,41 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <% include ./head %>
+  </head>
+
+  <body>
+    <% include ./navbar %>
+
+        <div class="container">
+
+    <form action="/submit" method="post">
+      <h2 >Submit a new post</h2>
+      <br />
+      Title<br />
+      <input type="text" name="title" size="50" required autofocus><br /><br />
+      Url (optional)<br />
+      <input type="text" name="url" size="50"><br /><br />
+      Text (optional)<br />
+      <textarea rows="4" cols="50" name="text"></textarea><br /><br />
+      Forum<br />
+      <select>
+      <optgroup>
+        <option value="pics">This</option>
+        <option value="funny">Is</option>
+        <option value="bitcoin">Still</option>
+        <option value="audi">Todo</option>
+        </optgroup>
+      </select><br /><br />
 
 
+      <button type="submit">submit</button>
+    </form>
 
+    </div>
 
-
-    <!DOCTYPE html>
-    <html>
-      <head>
-        <% include ./head %>
-
-
-
-      </head>
-      <body>
-        <% include ./navbar %>
-
-
+<!--
         <div class="container">
 
               <form class="form-submit" action="/submit" method="post">
@@ -28,16 +49,29 @@
 
               </form>
 
-        </div> <!-- /container -->
+        </div>
 
-        <!-- Latest compiled and minified CSS -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
 
-<!-- Optional theme -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
+-->
 
-<!-- Latest compiled and minified JavaScript -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 
-      </body>
-    </html>
+
+  </body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

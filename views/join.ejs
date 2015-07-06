@@ -10,7 +10,39 @@
 
 		<div class="container">
 
-			<form class="form-signin" action="/signin" method="post">
+
+    <form id="form-signup" action="/signup" method="post">
+      <h2 >Sign up</h2>
+      <br />
+      Username<br />
+      <input type="text" name="username" size="50" required autofocus><br /><br />
+      Email<br />
+      <input type="text" name="email" size="50"><br /><br />
+      Password<br />
+      <input type="text" name="password" size="50"><br /><br />
+
+      <button type="submit">submit</button>
+    </form>
+
+
+	<br /><br />
+	
+    <form id="form-signin" action="/signin" method="post">
+      <h2 >Sign in</h2>
+      <br />
+      Username<br />
+      <input type="text" name="username" size="50" required autofocus><br /><br />
+      Password<br />
+      <input type="text" name="password" size="50"><br /><br />
+
+      <button type="submit">submit</button>
+    </form>
+
+
+
+
+<%/*
+			<form id="form-signin" action="/signin" method="post">
 				<h2 class="form-signin-heading">sign in</h2>
 				<input type="username" name="username" class="form-control" placeholder="username" required autofocus>
 				<input type="password" name="password" class="form-control" placeholder="password" required>
@@ -19,10 +51,10 @@
                     <input type="checkbox" value="remember-me"> Remember me
                   </label> -->
 				<!-- </div> -->
-				<button class="btn btn-lg btn-default btn-block" type="submit">sign in</button>
+				<button class="btn btn-lg btn-default btn-block" type="submit" id="submit-signin">sign in</button>
 			</form>
 
-			<form class="form-signin" action="/signup" method="post">
+			<form id="form-signup" action="/signup" method="post">
 				<h2 class="form-signin-heading">sign up</h2>
 				<input type="username" name="username" class="form-control" placeholder="username" required autofocus>
 				<input type="text" name="email" class="form-control" placeholder="email (optional)">
@@ -32,21 +64,11 @@
                     <input type="checkbox" value="remember-me"> Remember me
                   </label> -->
 				<!-- </div> -->
-				<button class="btn btn-lg btn-default btn-block" type="submit">sign up</button>
+				<button class="btn btn-lg btn-default btn-block" type="submit" id="submit-signup">sign up</button>
 			</form>
 
 		</div>
-		<!-- /container -->
-
-    <!-- Latest compiled and minified CSS -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
-
-<!-- Optional theme -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
-
-<!-- Latest compiled and minified JavaScript -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-
+*/%>
 </body>
 
 </html>

@@ -1,6 +1,36 @@
 
 
+<div id=menu>
+	<div id="menu-left">
+		<strong><a href="/">home</a></strong> 
 
+		<% if(locals.forums) { %>
+			<% for(var i=0; i<forums.length; i++) { %>
+				| <a href="#"><%= forums[i].name %></a>
+
+			<% } %>
+		<% } %>
+		<% if (user) { %>
+		| <a href="/create">create a forum</a>
+		<% } %>
+	</div>
+
+	<div id="menu-right">
+		<% if (user) { %>
+		 <%= user.username %> (<%= user.balance %> satoshi)  
+		 | <a href='/submit'>submit a post</a>
+		 | <a href='/logout'>logout</a>
+		 | <a href='#'>withdraw</a>
+		 | <a href='#'><strong>deposit</strong></a>
+		<% } else { %>
+		 <a href='/join'><strong>sign-in or sign-up</strong></a>
+		<% } %>
+	</div>
+</div>
+
+
+
+<!--
 <nav class="navbar navbar-default navbar-fixed-top">
 	<div class="container">
 		<div class="navbar-header">
@@ -35,12 +65,6 @@
 					</ul>
 				</li>
 			</ul>
-			<!-- <form class="navbar-form navbar-left" role="search">
-        <div class="form-group">
-          <input type="text" class="form-control" placeholder="Search">
-        </div>
-         <button type="submit" class="btn btn-default">Submit</button>
-      </form> -->
 			<ul class="nav navbar-nav navbar-right">
 				<% if (user) { %>
 					<li><a href='/submit'>submit</a></li>
@@ -62,3 +86,4 @@
 		</div>
 	</div>
 </nav>
+-->

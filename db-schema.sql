@@ -16,9 +16,22 @@ CREATE TABLE Posts (
   "title" varchar(150) NOT NULL,
   "text" varchar(1000) NOT NULL,
   "url" varchar(250) NOT NULL,
-  "timestamp" bigint NOT NULL,
   "forum" varchar(50) NOT NULL,
+  "investment" bigint DEFAULT NULL,
   "username" varchar(24) NOT NULL,
+  "timestamp" bigint NOT NULL,
+  PRIMARY KEY ("id")
+);
+
+
+DROP TABLE IF EXISTS Forums;
+CREATE TABLE Forums (
+  "id" SERIAL,
+  "name" varchar(150) NOT NULL,
+  "description" varchar(1000) NOT NULL,
+  "rules" varchar(1000) NOT NULL,
+  "administrator" varchar(24) NOT NULL,
+  "timestamp" bigint NOT NULL,
   PRIMARY KEY ("id")
 );
 

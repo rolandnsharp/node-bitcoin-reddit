@@ -3,6 +3,8 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
+    "prestart": "browserify public/js/home.js -o public/js/build/home.js; lessc public/css/home.less > public/css/build/home.css; browserify public/js/join.js -o public/js/build/join.js; lessc public/css/join.less > public/css/build/join.css; browserify public/js/submit.js -o public/js/build/submit.js; lessc public/css/submit.less > public/css/build/submit.css; browserify public/js/create.js -o public/js/build/create.js; lessc public/css/create.less > public/css/build/create.css;",
+    "watch-js": "watchify public/js/home.js -o public/js/build/home.js -v; watchify public/js/join.js -o public/js/build/join.js -v",
     "start": "node --harmony ./bin/www",
     "test": "mocha --harmony test test/**/*-test.js"
   },
@@ -17,12 +19,16 @@
     "dotenv": "^1.1.0",
     "ejs": "^2.3.1",
     "express": "~4.12.4",
+    "jquery": "^2.1.4",
     "jsonwebtoken": "^5.0.2",
     "morgan": "~1.5.3",
     "passport-local": "^1.0.0",
     "pg": "^4.4.0",
     "pg-native": "^1.8.1",
-    "serve-favicon": "~2.2.1"
+    "serve-favicon": "~2.2.1",
+    "socket.io": "^1.3.5",
+    "socket.io-client": "^1.3.5",
+    "socketio-jwt": "^4.2.0"
   },
   "description": "A Node.js/Express reddit-like forum that uses Bitcoin instead of karma.",
   "main": "app.js",
@@ -41,7 +47,6 @@
     "mocha": "^2.2.5",
     "supertest": "^1.0.1",
     "browserify": "^10.1.3",
-    "literalify": "^0.4.0",
-    "react": "^0.13.3"
+    "watchify": "latest"
   }
 }
