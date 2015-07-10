@@ -1,0 +1,60 @@
+<% if (user) { %>
+
+      <strong>Hi <%= user.username %></strong><br />
+ 		Your balance is <span id="balance"><%= user.balance %><span> satoshi<br />
+ 		<a href='/logout'>Logout</a>
+
+	<br /><br />
+
+    <form id="form-submit" action="/submit" method="post">
+      <strong>Submit a new post</strong><br />
+      <input type="text" name="title" placeholder="Title" required autofocus><br />
+      <input type="text" name="url" placeholder="Url"><br />
+      <textarea rows="4" name="text" placeholder="Text" class="boxsizingBorder"></textarea><br />
+      <select>
+      <optgroup>
+        <option value="pics">This</option>
+        <option value="funny">Is</option>
+        <option value="bitcoin">Still</option>
+        <option value="audi">Todo</option>
+        </optgroup>
+      </select>
+
+
+      <button type="submit">Submit post</button>
+    </form>
+
+	<br /><br />
+
+	<form id="form-create" action="/create" method="post">
+		<strong>Create a new forum</strong><br />
+		<input type="text" name="name" placeholder="Name" required autofocus><br />
+		<textarea rows="4" name="description" placeholder="Description"></textarea><br />
+		<textarea rows="4" name="rules" placeholder="Rules"></textarea><br /><br />
+		<input type="hidden" name="administrator" value="<%= user.username %>">
+		<button type="submit">Create forum</button>
+	</form>
+
+
+<% } else { %>
+
+    <form id="form-signup" action="/signup" method="post">
+      <strong>Sign up</strong><br />
+      <input type="text" name="username" placeholder="Username" required autofocus><br />
+      <input type="text" name="email" placeholder="Email" ><br />
+      <input type="text" name="password" placeholder="Password" ><br />
+      <button type="submit">Sign up</button>
+    </form>
+
+
+	<br /><br />
+	
+    <form id="form-signin" action="/signin" method="post">
+      <strong>Sign in</strong><br />
+      <input type="text" name="username" placeholder="Username" required autofocus><br />
+      <input type="text" name="password" placeholder="Password"><br />
+      <button type="submit">Sign in</button>
+    </form>
+
+
+<% } %>

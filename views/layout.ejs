@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <% include ./imports/head %>
+  </head>
+
+  <body>
+
+    <div class="layout-container">
+      <div class="header">
+	    <% include ./imports/navbar %>
+      </div>
+      <div class="body">
+        <div class="main">
+        	<%- include(main, {user: user}) %>
+        </div>
+        <div class="sidebar">
+        	<%- include(sidebar, {user: user}) %>
+        </div>
+      </div>
+      <div class="footer">Footer</div>
+    </div>
+
+  </body>
+
+</html>

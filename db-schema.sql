@@ -2,10 +2,10 @@ DROP TABLE IF EXISTS Comments;
 CREATE TABLE Comments (
   "id" SERIAL,
   "text" varchar(1000) NOT NULL,
-  "timestamp" bigint NOT NULL,
   "forum" varchar(50) NOT NULL,
   "username" varchar(24) NOT NULL,
-  "parent" int DEFAULT NULL,
+  "parent" int NOT NULL,
+  "timestamp" bigint NOT NULL,
   PRIMARY KEY ("id")
 );
 
@@ -13,11 +13,13 @@ CREATE TABLE Comments (
 DROP TABLE IF EXISTS Posts;
 CREATE TABLE Posts (
   "id" SERIAL,
+  "postKey" varchar(10) NOT NULL,
   "title" varchar(150) NOT NULL,
   "text" varchar(1000) NOT NULL,
   "url" varchar(250) NOT NULL,
   "forum" varchar(50) NOT NULL,
-  "investment" bigint DEFAULT NULL,
+  "investors" text[],
+  "investment" int NOT NULL,
   "username" varchar(24) NOT NULL,
   "timestamp" bigint NOT NULL,
   PRIMARY KEY ("id")
@@ -45,7 +47,7 @@ CREATE TABLE Users (
   "salt" varchar(24) NOT NULL,
   "key" varchar(64) NOT NULL,
   "address" varchar(35) NOT NULL,
-  "balance" bigint DEFAULT NULL,
+  "balance" int NOT NULL,
   "joined" bigint NOT NULL,
   PRIMARY KEY ("id")
 );
@@ -56,6 +58,7 @@ CREATE TABLE Votes (
   "id" SERIAL,
   "userId" int NOT NULL,
   "postId" int NOT NULL,
+  "timestamp" bigint NOT NULL,
   PRIMARY KEY ("id")
 );
 
@@ -63,7 +66,7 @@ CREATE TABLE Votes (
 DROP TABLE IF EXISTS Payment;
 CREATE TABLE Payment (
   "id" SERIAL,
-  "amount" bigint DEFAULT NULL,
+  "amount" int NOT NULL,
   "transactionHash" varchar(64) NOT NULL,
   "username" varchar(24),
   "kind" varchar(24),
@@ -76,7 +79,7 @@ CREATE TABLE Wallet (
   "id" SERIAL,
   "key" varchar(64) NOT NULL,
   "address" varchar(35) NOT NULL,
-  "balance" bigint DEFAULT NULL,  
+  "balance" int NOT NULL,  
   "username" varchar(24),
   PRIMARY KEY ("id")
 );

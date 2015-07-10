@@ -4,7 +4,7 @@ var query = db.query;
 
 
 exports.create = function (comment, client) {
-    return db.insert(comment, 'comments', client)
+    return db.insert('comments', comment, client)
 };
 
 

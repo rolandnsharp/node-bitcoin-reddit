@@ -15,13 +15,8 @@ module.exports = function(req, res, next) {
 
 		yield Forum.create(forum)
 		
-		res.format({
-			'text/html': function() {
-				res.redirect('/');// redirect to /show
-			},
-			'application/json': function() {
-				res.send(forum);
-			}
+		res.json({
+			success: true,
 		});		
 	});
 };

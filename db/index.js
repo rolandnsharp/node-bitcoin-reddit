@@ -70,13 +70,30 @@ exports.find = function(table, query, client) {
 }
 
 
+/* never use with user provided data (does not use prepared statement)*/
+exports.findWhereIn = function(table, att, list, client) {
+/*
+	var string = '('
+	for(var i = 0; i < list.length; i++)
+		string += '?,'
+    string = (string.slice(0, - 1))+')'
+	return this.query("SELECT * FROM "+table+" WHERE "+att+" IN "+string+";", list, client)	
+*/
+	// if the list of values is empty, we return the empty set
+	if(list.length == 0)
+		return new Promise(function(resolve, reject) { resolve([]); })
+	else
+		return this.query("SELECT * FROM "+table+" WHERE "+att+" IN ("+list.toString()+");", [], client)	
+}
+
+
 exports.remove = function(table, query, client) {
 	var where = queryToWhere(query)	
 	return this.query("DELETE FROM "+table+" WHERE "+where.clause+";", where.values, client)	
 }
 
 
-exports.insert = function(obj, table, client) {
+exports.insert = function(table, obj, client) {
 
     var collumns = '('
 	var values = '('
@@ -92,10 +109,31 @@ exports.insert = function(obj, table, client) {
     collumns = (collumns.slice(0, - 1))+')'
     values = (values.slice(0, - 1))+')'
 
-   	return this.query("INSERT INTO "+table+" "+collumns+" VALUES "+values+";", params, client)
+   	return this.query("INSERT INTO "+table+" "+collumns+" VALUES "+values+" RETURNING id;", params, client)
 }
 
 
+
+exports.update = function(table, obj, dbKey, client) {
+    var set = " SET ",
+        params = [],
+        i = 1
+
+    for (var key in obj)
+      if (obj.hasOwnProperty(key) && key != 'id') {
+        set += '"'+key+'"=$'+(i++)+','
+        params.push(obj[key])
+      }
+    set = (set.slice(0, - 1))
+
+    var where = " WHERE "+dbKey+"=$"+(i++)
+    params.push(obj[dbKey])
+   	return this.query("UPDATE "+table+set+where, params, client)
+}
+
+
+
+/* ---- helpers ---- */
 
 function queryToWhere(query) {
 	// if the query is empty
@@ -115,23 +153,14 @@ function queryToWhere(query) {
 }
 
 
-/*
-function update(obj, table, dbKey, client) {
-    var set = "SET ",
-        params = []
 
-    for (var key in obj)
-      if (obj.hasOwnProperty(key) && key != 'id') {
-        set += key+"=?,"
-        params.push(obj[key])
-      }
-    set = (set.slice(0, - 1))
 
-    var where = " WHERE "+dbKey+"=?"
-    params.push(obj[dbKey])
-   	return this.query("UPDATE "+table+set+where, params, client)
-}
-*/
+
+
+
+
+
+
 
 
 

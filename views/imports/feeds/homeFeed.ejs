@@ -1,16 +1,15 @@
 <% for(var i=0; i<posts.length; i++) { %>
 
 	<div class="vote-row">
-
-		<div class="vote-box">
+		<a id="<%= posts[i].id %>" class="vote-box">
 			<div class="vote-arrow">&utrif;</div> 
 			<div class="vote-number"><%= posts[i].investment %></div> 
 			<div class="vote-satoshi">satoshi</div> 
-		</div>
+		</a>
 
 		<div class="post-box">
 			<div class="post-title"><a href="<%= posts[i].url %>"><%= posts[i].title %></a></div>
-			<div class="post-info">submitted by <%= posts[i].username %></div>
+			<div class="post-info">investors <%= posts[i].investors.toString() %></div>
 			<div class="post-text"><%= posts[i].text %></div>
 		</div>
 

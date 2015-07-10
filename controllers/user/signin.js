@@ -8,8 +8,6 @@ var jwt    = require('jsonwebtoken');
 module.exports = function (req, res, next) {
     cole(function* () {
 
-        console.log('signin', req.body)
-
         var username = req.body.username;
         var password = req.body.password;
         //var email = req.body.email;
@@ -46,24 +44,7 @@ module.exports = function (req, res, next) {
 				res.status(200);
 				res.json({
 					success: true,
-					//token: token
 				});
-
-/*
-				res.format({
-				'text/html': function() {
-					res.redirect('/')
-				},
-				'application/json': function() {
-					res.json({
-						success: true,
-						message: 'Enjoy your token!',
-						token: token
-					});
-				}
-				});
-*/
-
 			}   
 		}
 	});

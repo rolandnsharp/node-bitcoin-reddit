@@ -4,16 +4,13 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-var jwt    = require('jsonwebtoken');
+var jwt = require('jsonwebtoken');
 var app = express();
+require('dotenv').load();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
-
-
-//app.engine('html', require('ejs').renderFile);
-
 
 
 // uncomment after placing your favicon in /public
@@ -25,11 +22,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 
-
 app.use(function(req, res, next) {
-
-// check header or url parameters or post parameters for token
-//  var token = req.body.token || req.headers['x-access-token'] // || req.param('token');
 
   // look for token in a cookie
   var token = req.cookies.token
@@ -40,12 +33,9 @@ app.use(function(req, res, next) {
     jwt.verify(token, 'SuperSecret', function(err, user) {
 
       // if everything is good, save to request for use in other routes
-      if (user)
-        req.user = user;  
-      
+      if (user) req.user = user; 
       // if token has been messed with we show a failiure message
-      else
-        return res.json({ success: false, message: 'Failed to authenticate token.' });    
+      else return res.json({ success: false, message: 'Failed to authenticate token.' });    
       
       next();    
  

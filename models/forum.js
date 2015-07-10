@@ -5,7 +5,7 @@ var db = require('../db');
 
 
 exports.create = function (forum, client) {
-    return db.insert(forum, 'forums', client)
+    return db.insert('forums', forum, client)
 };
 
 exports.find = function (query, client) {

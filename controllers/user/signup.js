@@ -54,9 +54,11 @@ module.exports = function(req, res, next) {
                 address: address.toString(),
                 joined: new Date().getTime()
             };
-            yield User.create(user) 
 
-            // if user is found and password is right
+            // create new user tuple and store the id in object 
+            var idObj = yield User.create(user)
+            user.id = idObj[0].id 
+
             // create a token
             var token = jwt.sign(user, 'SuperSecret', {
                 expiresInMinutes: 1440 // expires in 24 hours

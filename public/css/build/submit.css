@@ -1,16 +1,19 @@
-/* ---- html tags ---- */
 body {
-  padding: 0px;
+  padding: 0;
+  margin: 0;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 a {
   color: #00b7ff;
   text-decoration: none;
+  cursor: pointer;
 }
 .container {
   margin: 50px;
 }
-/* ---- navbar ---- */
+/* ---- FONT SIZES ---- */
+/* ---- COLORS ---- */
+/* ---- SIZES ---- */
 #menu {
   display: -webkit-box;
   display: -moz-box;
@@ -19,6 +22,7 @@ a {
   display: flex;
   -webkit-flex-flow: row wrap;
   flex-flow: row wrap;
+  font-size: 10px;
 }
 #menu-left {
   flex: 1 auto;
@@ -26,6 +30,29 @@ a {
 #menu-right {
   flex: 1 auto;
   text-align: right;
+}
+.layout-container {
+  display: flex;
+  flex-direction: column;
+}
+.layout-container .header {
+  height: 50px;
+}
+.layout-container .footer {
+  height: 50px;
+}
+.layout-container .body {
+  display: flex;
+  flex-direction: row;
+  min-height: 500px;
+}
+.layout-container .body .main {
+  flex-grow: 1;
+  padding: 10px;
+}
+.layout-container .body .sidebar {
+  flex-basis: 600px;
+  padding: 10px;
 }
 /*
 .navbar-static-top {
@@ -80,19 +107,24 @@ body {
   margin: 0 auto;
 }
 */
-button {
-  width: 200px;
-  height: 50px;
-  font-size: inherit;
-}
+button,
 input,
-textarea,
+select,
+optgroup,
+textarea {
+  padding: 5px;
+  margin: 5px 0 0;
+  width: 100%;
+  font-size: inherit;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+button,
+input,
 select,
 optgroup {
-  padding: 5px;
-  margin: 5px 0px;
-  width: 400px;
-  font-size: inherit;
+  height: 30px;
 }
 textarea {
   border-color: #EEEEEE;

@@ -10,21 +10,10 @@
 
 			<% } %>
 		<% } %>
-		<% if (user) { %>
-		| <a href="/create">create a forum</a>
-		<% } %>
 	</div>
 
 	<div id="menu-right">
-		<% if (user) { %>
-		 <%= user.username %> (<%= user.balance %> satoshi)  
-		 | <a href='/submit'>submit a post</a>
-		 | <a href='/logout'>logout</a>
-		 | <a href='#'>withdraw</a>
-		 | <a href='#'><strong>deposit</strong></a>
-		<% } else { %>
-		 <a href='/join'><strong>sign-in or sign-up</strong></a>
-		<% } %>
+		<strong><a href='#'>more</a></strong>
 	</div>
 </div>
 

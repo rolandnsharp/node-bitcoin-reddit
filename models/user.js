@@ -8,7 +8,7 @@ var db = require('../db');
 
 
 exports.create = function (user, client) {
-    return db.insert(user, 'users', client)
+    return db.insert('users', user, client)
 };
 
 exports.find = function (query, client) {
@@ -21,6 +21,10 @@ exports.findAll = function (client) {
 
 exports.findById = function (id, client) {
     return db.find('users', { id:id },  client)
+};
+
+exports.findByIds = function (ids, client) {
+    return db.findWhereIn('users', 'id', ids,  client)
 };
 
 exports.findByAddress = function (address, client) {
@@ -38,3 +42,10 @@ exports.findByEmail = function (username, client) {
 exports.remove = function (query, client) {
     return db.remove('users', query, client)
 };
+
+exports.update = function (user, dbKey, client) {
+    return db.update('users', user, dbKey, client)
+};
+
+
+

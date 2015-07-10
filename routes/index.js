@@ -13,6 +13,7 @@ router.get('/logout', controller.user.logout);     // this should be a post (tod
 router.post('/deposit', controller.payment.createDeposit);
 router.post('/submit', controller.post.create);
 router.post('/create', controller.forum.create);
+router.post('/vote', controller.vote.submit);
 
 
 
